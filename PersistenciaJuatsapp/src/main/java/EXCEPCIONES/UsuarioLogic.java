@@ -48,7 +48,7 @@ public class UsuarioLogic {
         return usuariodao.obtener(usuario);
     }
     
-    //metodo de autentificar 
+    
     
     
     
