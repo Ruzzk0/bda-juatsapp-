@@ -402,6 +402,10 @@ public class frmRegistrar extends javax.swing.JFrame {
             
             if (UsuarioLogic.insertar(usuario)){
                 JOptionPane.showMessageDialog(this, "Registro Exitoso");
+                frmSesion iniciarsesion = new frmSesion();
+                iniciarsesion.setVisible(true);
+                this.dispose();
+
             }else {
                 JOptionPane.showMessageDialog(this, "Usuario ya existente");
             }

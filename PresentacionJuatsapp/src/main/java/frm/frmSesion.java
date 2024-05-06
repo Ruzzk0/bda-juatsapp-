@@ -191,7 +191,8 @@ public class frmSesion extends javax.swing.JFrame {
             if(UsuarioLogic.autentificar(txtusuario.getText(),txtcontra.getText())){
                 JOptionPane.showMessageDialog(this,"Bienvenido");
                 this.dispose();
-                frmChats frmchats = new frmChats();
+                   
+                frmChats frmchats = new frmChats(UsuarioLogic.obtener(txtusuario.getText()));
                 frmchats.setVisible(true);
                 
             }else{
