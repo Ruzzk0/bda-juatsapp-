@@ -83,6 +83,18 @@ public class frmSesion extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         jLabel3.setText("CONTRASEÑA:");
 
+        txtusuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtusuarioActionPerformed(evt);
+            }
+        });
+
+        txtcontra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcontraActionPerformed(evt);
+            }
+        });
+
         mostrar.setText("Mostrar Contrase;a");
         mostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,14 +187,18 @@ public class frmSesion extends javax.swing.JFrame {
 
     private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarActionPerformed
         
-        if(txtusuario.getText().isEmpty()&&!txtcontra.getText().isEmpty()){
+        if(!txtusuario.getText().isEmpty()&&!txtcontra.getText().isEmpty()){
             if(UsuarioLogic.autentificar(txtusuario.getText(),txtcontra.getText())){
                 JOptionPane.showMessageDialog(this,"Bienvenido");
+                this.dispose();
+                frmChats frmchats = new frmChats();
+                frmchats.setVisible(true);
+                
             }else{
                 JOptionPane.showMessageDialog(this,"Alguno de los dos es incorrecto");
             }
         }else{
-            JOptionPane.showMessageDialog(this,"Falta rellenar el usuario o la contrase;a");
+            JOptionPane.showMessageDialog(this,"Falta rellenar el usuario o la contraseña");
         }
         
         
@@ -198,6 +214,14 @@ public class frmSesion extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_mostrarActionPerformed
+
+    private void txtusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtusuarioActionPerformed
+
+    private void txtcontraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcontraActionPerformed
 
     /**
      * @param args the command line arguments
