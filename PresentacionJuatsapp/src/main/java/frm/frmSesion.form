@@ -195,7 +195,7 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="mostrar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Mostrar Contrase;a"/>
+            <Property name="text" type="java.lang.String" value="Mostrar Contrase&#xf1;a"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mostrarActionPerformed"/>

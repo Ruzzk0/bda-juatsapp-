@@ -95,7 +95,7 @@ public class frmSesion extends javax.swing.JFrame {
             }
         });
 
-        mostrar.setText("Mostrar Contrase;a");
+        mostrar.setText("Mostrar Contraseña");
         mostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mostrarActionPerformed(evt);
