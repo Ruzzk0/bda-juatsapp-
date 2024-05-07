@@ -11,6 +11,10 @@ import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.Image;
+import javax.swing.Icon;
+
 
 /**
  *
@@ -25,6 +29,7 @@ public class frmRegistrar extends javax.swing.JFrame {
         initComponents();
     }
 
+    File archivo; // objeto tipo file para contener el archivo
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,7 +65,8 @@ public class frmRegistrar extends javax.swing.JFrame {
         Registrar = new javax.swing.JButton();
         regresar = new javax.swing.JButton();
         btnSeleccionarImagen = new javax.swing.JButton();
-        lblImagen = new javax.swing.JLabel();
+        JLDireccion = new javax.swing.JLabel();
+        JLImg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,6 +107,12 @@ public class frmRegistrar extends javax.swing.JFrame {
         nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nombreActionPerformed(evt);
+            }
+        });
+
+        telefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                telefonoActionPerformed(evt);
             }
         });
 
@@ -277,7 +289,7 @@ public class frmRegistrar extends javax.swing.JFrame {
             }
         });
 
-        btnSeleccionarImagen.setText("Seleccionar Imagene");
+        btnSeleccionarImagen.setText("Seleccionar Imagen");
         btnSeleccionarImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSeleccionarImagenActionPerformed(evt);
@@ -289,22 +301,31 @@ public class frmRegistrar extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSeleccionarImagen)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(btnSeleccionarImagen))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(JLImg, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JLDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addComponent(JLImg, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(JLDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSeleccionarImagen)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -386,32 +407,44 @@ public class frmRegistrar extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminarActionPerformed
 
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
-        // aqui se hace lo del registro 
-        
-        if (!nombre.getText().isEmpty()&&
-                !Domicilio.getText().isEmpty()&&
-                //sexo
-                !telefono.getText().isEmpty()&&
-                !txtusuario.getText().isEmpty()&&
-                !txtContra.getText().isEmpty()&&
-                txtcontra2.getText().equals(txtContra.getText())){
-        
-            Usuario usuario = new Usuario(nombre.getText(),Domicilio.getText(),
-                    telefono.getText(),txtusuario.getText()
-                    ,txtContra.getText());
-            
-            if (UsuarioLogic.insertar(usuario)){
-                JOptionPane.showMessageDialog(this, "Registro Exitoso");
-                frmSesion iniciarsesion = new frmSesion();
-                iniciarsesion.setVisible(true);
-                this.dispose();
+        String telefonoIngresado = telefono.getText();
+    boolean esValido = validarTelefono(telefonoIngresado);
 
-            }else {
-                JOptionPane.showMessageDialog(this, "Usuario ya existente");
-            }
-        
+    if (!nombre.getText().isEmpty() &&
+        !Domicilio.getText().isEmpty() &&
+        !txtusuario.getText().isEmpty() &&
+        !txtContra.getText().isEmpty() &&
+        txtcontra2.getText().equals(txtContra.getText()) &&
+        esValido) {
+
+        Usuario usuario = new Usuario(nombre.getText(), Domicilio.getText(),
+                                      telefonoIngresado, txtusuario.getText(),
+                                      txtContra.getText());
+
+        if (UsuarioLogic.insertar(usuario)) {
+            JOptionPane.showMessageDialog(this, "Registro Exitoso");
+            frmSesion iniciarsesion = new frmSesion();
+            iniciarsesion.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuario ya existente");
         }
-        
+    } else {
+        if (!esValido) {
+            JOptionPane.showMessageDialog(this, "Error en el teléfono. Debe ingresar un número de máximo 10 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
+            telefono.setText(""); // Limpiar el campo de teléfono
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos requeridos.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+}
+
+private boolean validarTelefono(String telefono) {
+    // Expresión regular para validar que solo contenga dígitos
+    String regex = "^\\d{10}$";
+
+    // Verificar si el teléfono coincide con la expresión regular
+    return telefono.matches(regex);
         
     }//GEN-LAST:event_RegistrarActionPerformed
 
@@ -432,10 +465,41 @@ public class frmRegistrar extends javax.swing.JFrame {
     }//GEN-LAST:event_mostrar2ActionPerformed
 
     private void btnSeleccionarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarImagenActionPerformed
-     
+
+        
+        int resultado;
+        
+        frmbuscarimg buscar = new frmbuscarimg();
+        
+        FileNameExtensionFilter formato = new FileNameExtensionFilter ("JPG,PNG Y GIF" , "jpg", "png","gif");
+        
+        buscar.JFCImg.setFileFilter(formato);
+        
+        resultado = buscar.JFCImg.showOpenDialog(null);
+        
+        if (JFileChooser.APPROVE_OPTION == resultado){
+            archivo = buscar.JFCImg.getSelectedFile();
+            
+            JLDireccion.setText(archivo.getAbsolutePath());
+            
+        }
+        try {
+            ImageIcon ImgIcon = new ImageIcon(archivo.toString());
+            
+            Icon icono = new ImageIcon (ImgIcon.getImage().getScaledInstance(JLImg.getWidth(), JLImg.getHeight(),Image.SCALE_DEFAULT));
+            
+            JLImg.setIcon(icono);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Error al abrir"+e);
+        }
+        
          
         
     }//GEN-LAST:event_btnSeleccionarImagenActionPerformed
+
+    private void telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefonoActionPerformed
+        
+    }//GEN-LAST:event_telefonoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -474,6 +538,8 @@ public class frmRegistrar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Domicilio;
+    private javax.swing.JLabel JLDireccion;
+    private javax.swing.JLabel JLImg;
     private javax.swing.JButton Registrar;
     private javax.swing.JButton btnSeleccionarImagen;
     private javax.swing.JButton eliminar;
@@ -489,7 +555,6 @@ public class frmRegistrar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel lblImagen;
     private javax.swing.JButton modificar;
     private javax.swing.JCheckBox mostrar;
     private javax.swing.JCheckBox mostrar2;
