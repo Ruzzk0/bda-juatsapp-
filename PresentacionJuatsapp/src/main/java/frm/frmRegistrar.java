@@ -331,19 +331,22 @@ public class frmRegistrar extends javax.swing.JFrame {
     }//GEN-LAST:event_sexoActionPerformed
 
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
-        String telefonoIngresado = telefono.getText();
+         String telefonoIngresado = telefono.getText();
     boolean esValido = validarTelefono(telefonoIngresado);
+    String contrasenaIngresada = txtContra.getText();
+    boolean contrasenaValida = validarContrasena(contrasenaIngresada);
 
     if (!nombre.getText().isEmpty() &&
         !Domicilio.getText().isEmpty() &&
         !txtusuario.getText().isEmpty() &&
-        !txtContra.getText().isEmpty() &&
-        txtcontra2.getText().equals(txtContra.getText()) &&
-        esValido) {
+        !contrasenaIngresada.isEmpty() &&
+        contrasenaIngresada.equals(txtcontra2.getText()) &&
+        esValido &&
+        contrasenaValida) {
 
         Usuario usuario = new Usuario(nombre.getText(), Domicilio.getText(),
                                       telefonoIngresado, txtusuario.getText(),
-                                      txtContra.getText());
+                                      contrasenaIngresada);
 
         if (UsuarioLogic.insertar(usuario)) {
             JOptionPane.showMessageDialog(this, "Registro Exitoso");
@@ -357,6 +360,10 @@ public class frmRegistrar extends javax.swing.JFrame {
         if (!esValido) {
             JOptionPane.showMessageDialog(this, "Error en el teléfono. Debe ingresar un número de máximo 10 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
             telefono.setText(""); // Limpiar el campo de teléfono
+        } else if (!contrasenaValida) {
+            JOptionPane.showMessageDialog(this, "La contraseña debe contener al menos una mayúscula, una minúscula, un dígito numérico, un carácter especial y tener un mínimo de 8 caracteres.", "Error", JOptionPane.ERROR_MESSAGE);
+            txtContra.setText(""); // Limpiar el campo de contraseña
+            txtcontra2.setText(""); // Limpiar el campo de repetir contraseña
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos requeridos.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -369,6 +376,14 @@ private boolean validarTelefono(String telefono) {
 
     // Verificar si el teléfono coincide con la expresión regular
     return telefono.matches(regex);
+}
+
+private boolean validarContrasena(String contrasena) {
+    // Expresión regular para validar la contraseña
+    String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+
+    // Verificar si la contraseña coincide con la expresión regular
+    return contrasena.matches(regex);
         
     }//GEN-LAST:event_RegistrarActionPerformed
 

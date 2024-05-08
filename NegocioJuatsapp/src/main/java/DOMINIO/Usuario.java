@@ -14,7 +14,9 @@ public class Usuario {
     private String telefono;
     private String usuario;
     private String Contra;
- 
+
+    public Usuario() {
+    }
 
     public Usuario(String nombre, String Domicilio, String telefono, String usuario, String Contra) {
         this.nombre = nombre;
@@ -22,7 +24,6 @@ public class Usuario {
         this.telefono = telefono;
         this.usuario = usuario;
         this.Contra = Contra;
-        
     }
 
     public String getNombre() {
@@ -64,7 +65,9 @@ public class Usuario {
     public void setContra(String Contra) {
         this.Contra = Contra;
     }
+ 
 
+    
     
     
     
