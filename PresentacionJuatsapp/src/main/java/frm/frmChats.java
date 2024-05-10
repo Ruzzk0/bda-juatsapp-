@@ -62,6 +62,11 @@ public class frmChats extends javax.swing.JFrame {
         nuevochat.setBackground(new java.awt.Color(204, 204, 204));
         nuevochat.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         nuevochat.setText("NUEVO CHAT");
+        nuevochat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevochatActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         jLabel3.setText("NOMBRE DEL USUARIO CON EL QUE VA A CHATEAR:");
@@ -177,6 +182,12 @@ public class frmChats extends javax.swing.JFrame {
         inicio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_cerrarsesionActionPerformed
+
+    private void nuevochatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevochatActionPerformed
+        frmTodoChats todo = new frmTodoChats();
+        todo.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_nuevochatActionPerformed
 
     /**
      * @param args the command line arguments

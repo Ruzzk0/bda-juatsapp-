@@ -45,28 +45,25 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="17" max="32767" attributes="0"/>
-                          <Component id="JLImg" min="-2" pref="246" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                      </Group>
                       <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="regresar" min="-2" pref="164" max="-2" attributes="0"/>
-                                      <Component id="JLDireccion" alignment="1" min="-2" pref="153" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="regresar" min="-2" pref="164" max="-2" attributes="0"/>
+                                  <Component id="JLDireccion" alignment="1" min="-2" pref="153" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                                  <Component id="btnSeleccionarImagen" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                  <Component id="JLImg" min="-2" pref="246" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                          <Component id="btnSeleccionarImagen" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace type="separate" pref="25" max="32767" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -75,9 +72,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="JLImg" min="-2" pref="178" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="JLDireccion" min="-2" pref="14" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnSeleccionarImagen" min="-2" max="-2" attributes="0"/>
@@ -103,7 +100,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblpais" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -121,15 +118,14 @@
                                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="telefono" pref="303" max="32767" attributes="0"/>
-                                          <Component id="Domicilio" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="telefono" pref="303" max="32767" attributes="0"/>
+                                              <Component id="Domicilio" max="32767" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -140,55 +136,55 @@
                       <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="Registrar" min="-2" pref="162" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtusuario" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
+                                  <Component id="txtContra" alignment="0" pref="221" max="32767" attributes="0"/>
+                                  <Component id="txtcontra2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="ComboBoxPaises" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="sexo" alignment="0" pref="221" max="32767" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtusuario" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                                          <Component id="txtContra" alignment="0" pref="221" max="32767" attributes="0"/>
-                                          <Component id="txtcontra2" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="ComboBoxPaises" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="sexo" alignment="0" pref="221" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="mostrar" min="-2" max="-2" attributes="0"/>
-                                          <Component id="mostrar2" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                                      <Component id="fecha" min="-2" pref="143" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mostrar" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mostrar2" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="227" max="-2" attributes="0"/>
-                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                              <Component id="fecha" min="-2" pref="143" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="Registrar" min="-2" pref="162" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="213" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -220,7 +216,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblpais" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="ComboBoxPaises" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
@@ -401,7 +397,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RegistrarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel10">
+            <Component class="javax.swing.JLabel" name="lblpais">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Consolas" size="18" style="1"/>
@@ -421,7 +417,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ComboBoxPaisesActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jLabel10.setFont(new java.awt.Font(&quot;Consolas&quot;, 1, 18)); // NOI18N&#xa;    jLabel10.setText(&quot;Pa&#xed;s:&quot;);&#xa;&#xa;    // Obtener una lista de c&#xf3;digos de pa&#xed;ses&#xa;    String[] codigosPaises = Locale.getISOCountries();&#xa;&#xa;    // Crear una lista de nombres de pa&#xed;ses&#xa;    List&lt;String&gt; nombresPaises = new ArrayList&lt;&gt;();&#xa;    for (String codigoPais : codigosPaises) {&#xa;        Locale pais = new Locale(&quot;&quot;, codigoPais);&#xa;        nombresPaises.add(pais.getDisplayCountry());&#xa;    }&#xa;&#xa;    // Ordenar la lista alfab&#xe9;ticamente&#xa;    Collections.sort(nombresPaises);&#xa;&#xa;    // Agregar los nombres de pa&#xed;ses al ComboBox&#xa;    ComboBoxPaises = new javax.swing.JComboBox&lt;&gt;(nombresPaises.toArray(new String[0]));"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="lblpais.setFont(new java.awt.Font(&quot;Consolas&quot;, 1, 18)); // NOI18N&#xa;    lblpais.setText(&quot;Pa&#xed;s:&quot;);&#xa;&#xa;    // Obtener una lista de c&#xf3;digos de pa&#xed;ses&#xa;    String[] codigosPaises = Locale.getISOCountries();&#xa;&#xa;    // Crear una lista de nombres de pa&#xed;ses&#xa;    List&lt;String&gt; nombresPaises = new ArrayList&lt;&gt;();&#xa;    for (String codigoPais : codigosPaises) {&#xa;        Locale pais = new Locale(&quot;&quot;, codigoPais);&#xa;        nombresPaises.add(pais.getDisplayCountry());&#xa;    }&#xa;&#xa;    // Ordenar la lista alfab&#xe9;ticamente&#xa;    Collections.sort(nombresPaises);&#xa;&#xa;    // Agregar los nombres de pa&#xed;ses al ComboBox&#xa;    ComboBoxPaises = new javax.swing.JComboBox&lt;&gt;(nombresPaises.toArray(new String[0]));"/>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
