@@ -6,7 +6,7 @@ package frm;
 
 /**
  *
- * @author Usuario
+ * @author Ruzzky 
  */
 public class Presentacion {
 

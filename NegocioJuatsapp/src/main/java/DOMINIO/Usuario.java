@@ -5,7 +5,7 @@ import javax.swing.Action;
 
 /**
  *
- * @author Usuario
+ * @author Ruzzky
  */
 public class Usuario {
     
