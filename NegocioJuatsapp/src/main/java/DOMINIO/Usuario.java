@@ -1,18 +1,32 @@
-
 package DOMINIO;
 
 import javax.swing.Action;
+import java.io.Serializable;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 /**
  *
  * @author Ruzzky
  */
-public class Usuario {
+
+
+public class Usuario implements Serializable {
     
     private String nombre;
+    
+    
     private String Domicilio;
+    
+
     private String telefono;
+    
+    
     private String usuario;
+
     private String Contra;
 
     public Usuario() {
