@@ -21,9 +21,10 @@ public class frmChats extends javax.swing.JFrame {
         
     }
 
-    private frmChats() {
+    public frmChats() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
 
     
     
@@ -115,6 +116,11 @@ public class frmChats extends javax.swing.JFrame {
         jlusuario.setForeground(new java.awt.Color(51, 0, 153));
 
         editarperfil.setText("imagen del perfil");
+        editarperfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarperfilActionPerformed(evt);
+            }
+        });
 
         cerrarsesion.setBackground(new java.awt.Color(204, 204, 204));
         cerrarsesion.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
@@ -188,6 +194,12 @@ public class frmChats extends javax.swing.JFrame {
         todo.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_nuevochatActionPerformed
+
+    private void editarperfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarperfilActionPerformed
+        frmeditar editar = new frmeditar();
+        editar.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_editarperfilActionPerformed
 
     /**
      * @param args the command line arguments

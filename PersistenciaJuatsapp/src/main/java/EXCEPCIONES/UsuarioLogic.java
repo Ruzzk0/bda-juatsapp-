@@ -10,6 +10,7 @@ import PERSISTENCIA.UsuarioDAO;
  */
 public class UsuarioLogic {
     
+   
     private static UsuarioDAO usuariodao = new UsuarioDAO () ;
     
     public static boolean autentificar(String usuario,String contra){
@@ -47,10 +48,8 @@ public class UsuarioLogic {
     public static Usuario obtener(String usuario){
         return usuariodao.obtener(usuario);
     }
-    
-    
-    
-    
+
+   
     
     
 }

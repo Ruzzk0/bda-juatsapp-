@@ -65,10 +65,5 @@ public class Usuario {
     public void setContra(String Contra) {
         this.Contra = Contra;
     }
- 
-
-    
-    
-    
-    
+   
 }

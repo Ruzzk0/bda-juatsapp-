@@ -1,20 +1,27 @@
 
 package frm;
 
+import DOMINIO.Usuario;
+import EXCEPCIONES.UsuarioLogic;
 import java.awt.Image;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
  * @author Usuario
  */
 public class frmeditar extends javax.swing.JFrame {
+
+    private String Usuario;
 
     /**
      * Creates new form frmeditar
@@ -34,9 +41,9 @@ public class frmeditar extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        regresar = new javax.swing.JButton();
         btnSeleccionarImagen = new javax.swing.JButton();
         JLImg = new javax.swing.JLabel();
+        JLDireccion = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -69,15 +76,6 @@ public class frmeditar extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        regresar.setBackground(new java.awt.Color(204, 204, 204));
-        regresar.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        regresar.setText("REGRESAR");
-        regresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                regresarActionPerformed(evt);
-            }
-        });
-
         btnSeleccionarImagen.setText("Seleccionar Imagen");
         btnSeleccionarImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,27 +87,27 @@ public class frmeditar extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(btnSeleccionarImagen)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 18, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JLImg, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(JLImg, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(JLDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSeleccionarImagen))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(JLImg, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(8, 8, 8)
+                .addComponent(JLDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSeleccionarImagen)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
+                .addContainerGap(537, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
@@ -368,49 +366,64 @@ public class frmeditar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
-       
-    }//GEN-LAST:event_regresarActionPerformed
-
     private void modificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar1ActionPerformed
-//
-//        if (!nombre.getText().isEmpty()&&
-//            !Domicilio.getText().isEmpty()&&
-//            //sexo
-//            !telefono.getText().isEmpty()&&
-//            !txtusuario.getText().isEmpty()&&
-//            !txtContra.getText().isEmpty()&&
-//            txtcontra2.getText().equals(txtContra.getText())){
-//
-//            Usuario usuario = new Usuario(nombre.getText(),Domicilio.getText(),
-//                telefono.getText(),txtusuario.getText()
-//                ,txtContra.getText());
-//            if (UsuarioLogic.modificar(usuario)){
-//                JOptionPane.showMessageDialog(this, "Modificacion Exitosa");
-//            }else {
-//                JOptionPane.showMessageDialog(this, "Usuario No encontrado");
-//            }
-//
-//        }
+
+        if (!nombre.getText().isEmpty()&&
+            !Domicilio.getText().isEmpty()&&
+            //sexo
+            !telefono.getText().isEmpty()&&
+            !txtusuario.getText().isEmpty()&&
+            !txtContra.getText().isEmpty()&&
+            txtcontra2.getText().equals(txtContra.getText())){
+
+            Usuario usuario = new Usuario(nombre.getText(),Domicilio.getText(),
+                telefono.getText(),txtusuario.getText()
+                ,txtContra.getText());
+            if (UsuarioLogic.modificar(usuario)){
+                JOptionPane.showMessageDialog(this, "Modificacion Exitosa");
+            }else {
+                JOptionPane.showMessageDialog(this, "Usuario No encontrado");
+            }
+
+        }
 
     }//GEN-LAST:event_modificar1ActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
 
-//        if (!txtusuario.getText().isEmpty()){
-//
-//            if (UsuarioLogic.eliminar(txtusuario.getText())){
-//                JOptionPane.showMessageDialog(this, "Usario Eliminado");
-//            }else {
-//                JOptionPane.showMessageDialog(this, "Usuario No encontrado");
-//            }
-//
-//        }
+        if (!txtusuario.getText().isEmpty()){
+
+            if (UsuarioLogic.eliminar(txtusuario.getText())){
+                JOptionPane.showMessageDialog(this, "Usario Eliminado");
+            }else {
+                JOptionPane.showMessageDialog(this, "Usuario No encontrado");
+            }
+
+        }
 
     }//GEN-LAST:event_eliminarActionPerformed
 
     private void btnSeleccionarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarImagenActionPerformed
+        int resultado;
 
+    frmbuscarimg buscar = new frmbuscarimg();
+    FileNameExtensionFilter formato = new FileNameExtensionFilter("JPG,PNG Y GIF", "jpg", "png", "gif");
+    buscar.JFCImg.setFileFilter(formato);
+
+    resultado = buscar.JFCImg.showOpenDialog(null);
+
+    if (JFileChooser.APPROVE_OPTION == resultado) {
+        File archivo = buscar.JFCImg.getSelectedFile();
+        JLDireccion.setText(archivo.getAbsolutePath());
+
+        try {
+            ImageIcon ImgIcon = new ImageIcon(archivo.toString());
+            Icon icono = new ImageIcon(ImgIcon.getImage().getScaledInstance(JLImg.getWidth(), JLImg.getHeight(), Image.SCALE_DEFAULT));
+            JLImg.setIcon(icono);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al abrir: " + e.getMessage());
+        }
+    }
 
     }//GEN-LAST:event_btnSeleccionarImagenActionPerformed
 
@@ -447,7 +460,7 @@ public class frmeditar extends javax.swing.JFrame {
     }//GEN-LAST:event_mostrar2ActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+    
     }//GEN-LAST:event_btnEditarActionPerformed
 
     /**
@@ -488,6 +501,7 @@ public class frmeditar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JComboBox<String> ComboBoxPaises;
     private javax.swing.JTextField Domicilio;
+    private javax.swing.JLabel JLDireccion;
     private javax.swing.JLabel JLImg;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnSeleccionarImagen;
@@ -510,7 +524,6 @@ public class frmeditar extends javax.swing.JFrame {
     private javax.swing.JCheckBox mostrar;
     private javax.swing.JCheckBox mostrar2;
     private javax.swing.JTextField nombre;
-    private javax.swing.JButton regresar;
     private javax.swing.JComboBox<String> sexo;
     private javax.swing.JTextField telefono;
     private javax.swing.JPasswordField txtContra;

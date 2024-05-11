@@ -5,44 +5,21 @@
     <artifactId>PersistenciaJuatsapp</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <dependencies>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>NegocioJuatsapp</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependencies>
+
+   <dependencies>
+    <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>NegocioJuatsapp</artifactId>
+        <version>${project.version}</version>
+    </dependency>
+
     <dependency>
         <groupId>org.mongodb</groupId>
         <artifactId>mongodb-driver-sync</artifactId>
         <version>4.8.2</version>
     </dependency>
-     <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>bson</artifactId>
-            <version>3.10.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongo-java-driver</artifactId>
-            <version>3.12.13</version>
-            <type>jar</type>
-        </dependency>
 </dependencies>
-   
-        <dependency>
-            <groupId>com.mycompany</groupId>
-            <artifactId>PersistenciaJuatsapp</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.mycompany</groupId>
-                    <artifactId>PersistenciaJuatsapp</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        
-    </dependencies>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>
