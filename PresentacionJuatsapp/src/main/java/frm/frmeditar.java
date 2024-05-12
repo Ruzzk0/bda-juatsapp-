@@ -1,6 +1,7 @@
 
 package frm;
 
+import Conexion.MongoDBConexion;
 import DOMINIO.Usuario;
 import EXCEPCIONES.UsuarioLogic;
 import java.awt.Image;
@@ -460,7 +461,23 @@ public class frmeditar extends javax.swing.JFrame {
     }//GEN-LAST:event_mostrar2ActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-    
+//        
+//        String usuarioIngresado = txtusuario.getText();
+//    if (!usuarioIngresado.isEmpty()) {
+//        MongoDBConexion conexion = new MongoDBConexion();
+//        Usuario usuario = conexion.obtenerUsuario(usuarioIngresado);
+//        if (usuario != null) {
+//            nombre.setText(usuario.getNombre());
+//            Domicilio.setText(usuario.getDomicilio());
+//            telefono.setText(usuario.getTelefono());
+//            txtContra.setText(usuario.getContra());
+//            txtcontra2.setText(usuario.getContra());
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+//        }
+//    } else {
+//        JOptionPane.showMessageDialog(this, "Por favor, ingrese un nombre de usuario", "Error", JOptionPane.ERROR_MESSAGE);
+//    }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     /**

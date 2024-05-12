@@ -32,6 +32,8 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
+    
+    
     public Usuario(String nombre, String Domicilio, String telefono, String usuario, String Contra) {
         this.nombre = nombre;
         this.Domicilio = Domicilio;

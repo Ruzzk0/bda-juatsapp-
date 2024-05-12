@@ -18,7 +18,13 @@
         <artifactId>mongodb-driver-sync</artifactId>
         <version>4.8.2</version>
     </dependency>
-</dependencies>
+      <dependency>
+         <groupId>org.mongodb</groupId>
+         <artifactId>mongodb-driver</artifactId>
+         <version>3.10.2</version>
+         <type>jar</type>
+      </dependency>
+   </dependencies>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
