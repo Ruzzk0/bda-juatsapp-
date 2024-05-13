@@ -1,12 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package frm;
 import DOMINIO.Usuario;
 /**
  *
- * @author Usuario
+ * @author ruzzky
  */
 public class frmplatica extends javax.swing.JFrame {
 

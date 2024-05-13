@@ -1,6 +1,8 @@
 
 package frm;
+import DOMINIO.Chats;
 import DOMINIO.Usuario;
+import java.util.LinkedList;
 
 /**
  *
@@ -8,6 +10,7 @@ import DOMINIO.Usuario;
  */
 public class frmChats extends javax.swing.JFrame {
 
+    public static LinkedList contenedor = new LinkedList ();
     /**
      * Creates new form frmChats
      */
@@ -16,6 +19,10 @@ public class frmChats extends javax.swing.JFrame {
         
        jlusuario.setText(usuario.getUsuario());
  
+    }
+
+    frmChats() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 
@@ -151,7 +158,7 @@ public class frmChats extends javax.swing.JFrame {
                 .addComponent(editarperfil, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(182, 182, 182)
                 .addComponent(cerrarsesion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -175,9 +182,14 @@ public class frmChats extends javax.swing.JFrame {
     }//GEN-LAST:event_cerrarsesionActionPerformed
 
     private void nuevochatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevochatActionPerformed
-        frmTodoChats todo = new frmTodoChats();
-        todo.setVisible(true);
-        this.dispose();
+        
+    String usuarioChat = NuevoUsuario.getText();
+    Chats usu = new Chats(usuarioChat);
+    contenedor.add(usu);
+    NuevoUsuario.setText("");
+    frmTodoChats todo = new frmTodoChats(usuarioChat); 
+    todo.setVisible(true);
+    this.dispose();
     }//GEN-LAST:event_nuevochatActionPerformed
 
     private void editarperfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarperfilActionPerformed

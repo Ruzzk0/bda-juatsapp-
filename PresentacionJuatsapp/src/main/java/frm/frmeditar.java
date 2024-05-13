@@ -30,7 +30,7 @@ public class frmeditar extends javax.swing.JFrame {
     }
 
    public frmeditar() {
-    initComponents(); // Aquí puedes inicializar los componentes de tu formulario si es necesario
+    initComponents(); 
 }
 
    
@@ -62,7 +62,7 @@ private void cargarDatosUsuario() {
         btnSeleccionarImagen = new javax.swing.JButton();
         JLImg = new javax.swing.JLabel();
         JLDireccion = new javax.swing.JLabel();
-        eliminar = new javax.swing.JButton();
+        REGRESAR = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -87,6 +87,7 @@ private void cargarDatosUsuario() {
         jLabel10 = new javax.swing.JLabel();
         txtusuario = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
+        eliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,12 +102,12 @@ private void cargarDatosUsuario() {
             }
         });
 
-        eliminar.setBackground(new java.awt.Color(204, 204, 204));
-        eliminar.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        eliminar.setText("ELIMINAR");
-        eliminar.addActionListener(new java.awt.event.ActionListener() {
+        REGRESAR.setBackground(new java.awt.Color(204, 204, 204));
+        REGRESAR.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        REGRESAR.setText("REGRESAR");
+        REGRESAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarActionPerformed(evt);
+                REGRESARActionPerformed(evt);
             }
         });
 
@@ -119,12 +120,11 @@ private void cargarDatosUsuario() {
                 .addComponent(JLImg, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(JLDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSeleccionarImagen)))
+                .addGap(40, 40, 40)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(REGRESAR, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JLDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSeleccionarImagen))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -137,8 +137,8 @@ private void cargarDatosUsuario() {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSeleccionarImagen)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addComponent(REGRESAR, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
         );
 
         jLabel2.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
@@ -256,6 +256,15 @@ private void cargarDatosUsuario() {
             }
         });
 
+        eliminar.setBackground(new java.awt.Color(204, 204, 204));
+        eliminar.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        eliminar.setText("ELIMINAR");
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -318,9 +327,11 @@ private void cargarDatosUsuario() {
                         .addComponent(jLabel9)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(modificar1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(modificar1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23))))
         );
@@ -373,7 +384,8 @@ private void cargarDatosUsuario() {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(modificar1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45))
         );
 
@@ -412,16 +424,7 @@ private void cargarDatosUsuario() {
 //
 //        }
 
-     if (!nombre.getText().isEmpty() && !Domicilio.getText().isEmpty() && !telefono.getText().isEmpty() && !txtusuario.getText().isEmpty() && !txtContra.getText().isEmpty() && txtcontra2.getText().equals(txtContra.getText())) {
-        Usuario usuario = new Usuario(nombre.getText(), Domicilio.getText(), telefono.getText(), txtusuario.getText(), txtContra.getText());
-        if (UsuarioLogic.modificar(usuario)) {
-            JOptionPane.showMessageDialog(this, "Modificación exitosa");
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al modificar los datos");
-        }
-    } else {
-        JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos");
-    }
+   
 
     }//GEN-LAST:event_modificar1ActionPerformed
 
@@ -500,30 +503,23 @@ private void cargarDatosUsuario() {
     }//GEN-LAST:event_txtusuarioActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-         String nombreUsuario = txtusuario.getText();
-    String nombre = this.nombre.getText();
-    String domicilio = Domicilio.getText();
-    String telefono = this.telefono.getText();
-    String contra = txtContra.getText();
-
-    Usuario usuario = new Usuario(nombre, domicilio, telefono, nombreUsuario, contra);
-
-    MongoDBConexion conexion = new MongoDBConexion();
-    if (MongoDBConexion.actualizarUsuario(usuario, conexion)) {
-        JOptionPane.showMessageDialog(this, "Cambios guardados correctamente");
-    } else {
-        JOptionPane.showMessageDialog(this, "Error al guardar los cambios");
-    }
-        
-        
-//        
-//       frmInicio inicio = new frmInicio();
-//        inicio.setVisible(true);
-//        this.dispose();
         
         
         
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void REGRESARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REGRESARActionPerformed
+     // Mostrar un cuadro de diálogo de confirmación
+    int opcion = JOptionPane.showConfirmDialog(this, "Por seguridad ira al inisio de sesion, Esto cerrará la ventana actual.", "Confirmación", JOptionPane.YES_NO_OPTION);
+    
+    // Verificar la opción seleccionada por el usuario
+    if (opcion == JOptionPane.YES_OPTION) {
+        // Si el usuario elige sí, regresar al inicio de sesión
+        frmInicio inicio = new frmInicio();
+        inicio.setVisible(true);
+        this.dispose();
+    }
+    }//GEN-LAST:event_REGRESARActionPerformed
 
     /**
      * @param args the command line arguments
@@ -565,6 +561,7 @@ private void cargarDatosUsuario() {
     private javax.swing.JTextField Domicilio;
     private javax.swing.JLabel JLDireccion;
     private javax.swing.JLabel JLImg;
+    private javax.swing.JButton REGRESAR;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnSeleccionarImagen;
     private javax.swing.JButton eliminar;

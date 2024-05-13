@@ -1,13 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package DOMINIO;
 
 /**
  *
- * @author Usuario
+ * @author ruzzky
  */
 public class Chats {
+    
+    private String usuarioChat;
+
+    public Chats() {
+    }
+
+    public Chats(String usuarioChat) {
+        this.usuarioChat = usuarioChat;
+    }
+
+    public String getUsuarioChat() {
+        return usuarioChat;
+    }
+
+    public void setUsuarioChat(String usuarioChat) {
+        this.usuarioChat = usuarioChat;
+    }
     
 }

@@ -83,7 +83,7 @@
                   <Component id="editarperfil" min="-2" pref="172" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
                   <Component id="cerrarsesion" min="-2" pref="36" max="-2" attributes="0"/>
-                  <EmptySpace pref="25" max="32767" attributes="0"/>
+                  <EmptySpace pref="26" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

@@ -5,6 +5,7 @@ import DOMINIO.Usuario;
 import PERSISTENCIA.UsuarioDAO;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class UsuarioLogic {
     
@@ -29,8 +30,11 @@ public class UsuarioLogic {
     }
 
     public static boolean insertar(Usuario usuario) {
-        return usuarioDAO.insertar(usuario); // Utilizamos el método insertar del UsuarioDAO
-    }
+    // Encriptar la contraseña antes de almacenarla
+    String contrasenaEncriptada = BCrypt.hashpw(usuario.getContra(), BCrypt.gensalt());
+    usuario.setContra(contrasenaEncriptada);
+    return usuarioDAO.insertar(usuario);
+}
 
     public static boolean modificar(Usuario usuario) {
         return usuarioDAO.modificar(usuario); // Utilizamos el método modificar del UsuarioDAO
