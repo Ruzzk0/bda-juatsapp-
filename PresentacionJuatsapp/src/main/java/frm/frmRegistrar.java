@@ -277,11 +277,11 @@ public class frmRegistrar extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(Registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel9)
-                        .addGap(213, 213, 213))))
+                        .addGap(213, 213, 213))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(Registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,9 +332,9 @@ public class frmRegistrar extends javax.swing.JFrame {
                     .addComponent(mostrar2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
-                .addGap(112, 112, 112)
+                .addGap(110, 110, 110)
                 .addComponent(Registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addGap(47, 47, 47))
         );
 
         regresar.setBackground(new java.awt.Color(204, 204, 204));
@@ -436,6 +436,8 @@ public class frmRegistrar extends javax.swing.JFrame {
                                       telefonoIngresado, txtusuario.getText(),
                                       contrasenaIngresada);
 
+        UsuarioLogic usuarioLogic = new UsuarioLogic();
+        
         if (UsuarioLogic.insertar(usuario)) {
             JOptionPane.showMessageDialog(this, "Registro Exitoso");
             frmSesion iniciarsesion = new frmSesion();

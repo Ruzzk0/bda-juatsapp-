@@ -1,87 +1,63 @@
-
 package PERSISTENCIA;
 
 import DOMINIO.Usuario;
-import java.util.ArrayList;
-import java.util.List;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
+import org.bson.Document;
 
-/**
- *
- * @author Usuario
- */
 public class UsuarioDAO {
-    
-    private List<Usuario> usuarios;
-    
-    
-    public UsuarioDAO (){
-        usuarios = new ArrayList<>();
+
+    private final MongoCollection<Document> collection;
+
+    public UsuarioDAO(MongoCollection<Document> collection) {
+        this.collection = collection;
     }
-    
-    //esta parte es para que se diga si hay usuario existente o no 
-    
-    public int buscar(String usuario){
-      int n= -1;
-      for(int i = 0; i < usuarios.size() ; i++ ){
-          if (usuarios.get(i).getUsuario().equals(usuario)){
-              n= i;
-              break;
-          }
-      }
-      return n;
-    }
-    public boolean insertar( Usuario usuario ){
-        if (buscar(usuario.getUsuario())==-1){
-            
-            usuarios.add(usuario);
+
+    public boolean insertar(Usuario usuario) {
+        Document doc = new Document("nombre", usuario.getNombre())
+                .append("domicilio", usuario.getDomicilio())
+                .append("telefono", usuario.getTelefono())
+                .append("usuario", usuario.getUsuario())
+                .append("contrasena", usuario.getContra()); 
+
+        try {
+            collection.insertOne(doc);
             return true;
-        }else{
+        } catch (Exception e) {
+            e.printStackTrace();
             return false;
-        }           
-            
+        }
     }
-    
-    public boolean modificar (Usuario usuario){
-        if (buscar(usuario.getUsuario())!=-1){
-            
-            Usuario usuarioaux = obtener(usuario.getUsuario());
-            
-            usuarioaux.setContra(usuario.getContra());
-            usuarioaux.setNombre(usuario.getNombre());
-            usuarioaux.setDomicilio(usuario.getDomicilio());
-            
+
+    public boolean modificar(Usuario usuario) {
+        try {
+            collection.updateOne(Filters.eq("usuario", usuario.getUsuario()), Updates.set("contrasena", usuario.getContra()));
+            collection.updateOne(Filters.eq("usuario", usuario.getUsuario()), Updates.set("nombre", usuario.getNombre()));
+            collection.updateOne(Filters.eq("usuario", usuario.getUsuario()), Updates.set("domicilio", usuario.getDomicilio()));
             return true;
-        }else{
+        } catch (Exception e) {
+            e.printStackTrace();
             return false;
-        } 
-        
+        }
     }
-    
-    public boolean eliminar (String usuario){
-        
-        if (buscar(usuario)!=-1){
-          
-            usuarios.remove(buscar(usuario));
-            
+
+    public boolean eliminar(String usuario) {
+        try {
+            collection.deleteOne(Filters.eq("usuario", usuario));
             return true;
-        }else{
+        } catch (Exception e) {
+            e.printStackTrace();
             return false;
-        } 
-        
+        }
     }
-    
-  
-    public Usuario obtener (String usuario){
-        
-        if (buscar(usuario)!=-1){
-            return usuarios.get(buscar(usuario));
-        }else{
+
+    public Usuario obtener(String usuario) {
+        Document doc = collection.find(Filters.eq("usuario", usuario)).first();
+        if (doc != null) {
+            return new Usuario(doc.getString("nombre"), doc.getString("domicilio"), doc.getString("telefono"), doc.getString("usuario"), doc.getString("contrasena")); // Mantengo el nombre de la variable como Contrasena
+        } else {
             return null;
         }
-        
     }
-    
-    
-    
-    
 }
