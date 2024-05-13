@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Ruzkky
+ * @author Usuario
  */
 public class frmTodoChats extends javax.swing.JFrame {
 private DefaultTableModel Usuarios;
@@ -180,7 +180,7 @@ int contador =0;
     }// </editor-fold>//GEN-END:initComponents
 
     private void tabladatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabladatosMouseClicked
-           // Obtener la fila seleccionada
+     // Obtener la fila seleccionada
         int filaSeleccionada = tabladatos.getSelectedRow();
         // Si se seleccionó una fila válida
         if (filaSeleccionada != -1) {
@@ -198,11 +198,17 @@ int contador =0;
     }//GEN-LAST:event_NuevoChatActionPerformed
 
     private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
-        // TODO add your handling code here:
+        // Verificar si se seleccionó una fila válida
+        if (contador != -1) {
+            // Eliminar la fila del modelo de la tabla
+            Usuarios.removeRow(contador);
+            // Restablecer el índice de la fila seleccionada
+            contador = -1;
+        }
     }//GEN-LAST:event_borrarActionPerformed
 
     private void conversarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conversarActionPerformed
-    //mañana veo lo de abrir esta parte 
+    
     }//GEN-LAST:event_conversarActionPerformed
 
     /**
