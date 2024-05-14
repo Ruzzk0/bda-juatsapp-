@@ -31,8 +31,8 @@ public class UsuarioLogic {
 
     public static boolean insertar(Usuario usuario) {
     // Encriptar la contraseña antes de almacenarla
-    String contrasenaEncriptada = BCrypt.hashpw(usuario.getContra(), BCrypt.gensalt());
-    usuario.setContra(contrasenaEncriptada);
+//    String contrasenaEncriptada = BCrypt.hashpw(usuario.getContra(), BCrypt.gensalt());
+//    usuario.setContra(contrasenaEncriptada);
     return usuarioDAO.insertar(usuario);
 }
 

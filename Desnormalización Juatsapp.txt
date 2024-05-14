@@ -1,0 +1,32 @@
+Colección Usuario {
+  "_id": ObjectId("..."),
+  "telefono": "123456789",
+  "contrasena_encriptada": "hash_contraseña",
+  "fecha_nacimiento": ISODate("1990-01-01T00:00:00Z"),
+  "imagen_perfil": "ruta/a/imagen.jpg",
+  "nombre": "Nombre del usuario",
+  "region": "Nombre de la región",
+  "sexo": "Masculino/Femenino/No especificado"
+}
+
+Colección Chat {
+  "_id": ObjectId("..."),
+  "participantes": [
+    ObjectId("id_usuario_1"),
+    ObjectId("id_usuario_2"),
+    ObjectId("id_usuario_3")
+  ],
+  "mensajes": [
+    {
+      "texto": "Hola, ¿cómo estás?",
+      "imagen": "ruta/a/imagen.jpg",
+      "usuario_emisor": ObjectId("id_usuario_emisor"),
+      "fecha_registro": ISODate("2024-05-08T12:00:00Z")
+    },
+    {
+      "texto": "¡Hola! Estoy bien, gracias.",
+      "usuario_emisor": ObjectId("id_usuario_receptor"),
+      "fecha_registro": ISODate("2024-05-08T12:05:00Z")
+    }
+  ]
+}
