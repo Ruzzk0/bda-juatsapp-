@@ -114,6 +114,12 @@ public class frmRegistrar extends javax.swing.JFrame {
             }
         });
 
+        txtContra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContraActionPerformed(evt);
+            }
+        });
+
         jLabel8.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         jLabel8.setText("Contraseña:");
 
@@ -470,7 +476,7 @@ private boolean validarTelefono(String telefono) {
 
 private boolean validarContrasena(String contrasena) {
     // Expresión regular para validar la contraseña
-    String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+    String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&/\\-_ñ°+\\]\\['¿.,])[A-Za-z\\d@$!%*?&/\\-_ñ°+\\]\\['¿.,]{8,}$";
 
     // Verificar si la contraseña coincide con la expresión regular
     return contrasena.matches(regex);
@@ -533,6 +539,10 @@ private boolean validarContrasena(String contrasena) {
     private void ComboBoxPaisesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxPaisesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboBoxPaisesActionPerformed
+
+    private void txtContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContraActionPerformed
 
     /**
      * @param args the command line arguments
