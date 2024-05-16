@@ -1,4 +1,3 @@
-
 package frm;
 
 import DOMINIO.Usuario;
@@ -19,7 +18,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-
 /**
  *
  * @author Ruzzky
@@ -34,6 +32,7 @@ public class frmRegistrar extends javax.swing.JFrame {
     }
 
     File archivo; // objeto tipo file para contener el archivo
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -426,114 +425,112 @@ public class frmRegistrar extends javax.swing.JFrame {
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
 
         String telefonoIngresado = telefono.getText();
-    boolean esValido = validarTelefono(telefonoIngresado);
-    String contrasenaIngresada = txtContra.getText();
-    boolean contrasenaValida = validarContrasena(contrasenaIngresada);
+        boolean esValido = validarTelefono(telefonoIngresado);
+        String contrasenaIngresada = txtContra.getText();
+        boolean contrasenaValida = validarContrasena(contrasenaIngresada);
 
-    if (!nombre.getText().isEmpty() &&
-        !Domicilio.getText().isEmpty() &&
-        !txtusuario.getText().isEmpty() &&
-        !contrasenaIngresada.isEmpty() &&
-        contrasenaIngresada.equals(txtcontra2.getText()) &&
-        esValido &&
-        contrasenaValida) {
+        if (!nombre.getText().isEmpty()
+                && !Domicilio.getText().isEmpty()
+                && !txtusuario.getText().isEmpty()
+                && !contrasenaIngresada.isEmpty()
+                && contrasenaIngresada.equals(txtcontra2.getText())
+                && esValido
+                && contrasenaValida) {
 
-        Usuario usuario = new Usuario(nombre.getText(), Domicilio.getText(),
-                                      telefonoIngresado, txtusuario.getText(),
-                                      contrasenaIngresada);
+            Usuario usuario = new Usuario(nombre.getText(), Domicilio.getText(),
+                    telefonoIngresado, txtusuario.getText(),
+                    contrasenaIngresada);
 
-        UsuarioLogic usuarioLogic = new UsuarioLogic();
-        
-        if (UsuarioLogic.insertar(usuario)) {
-            JOptionPane.showMessageDialog(this, "Registro Exitoso");
-            frmSesion iniciarsesion = new frmSesion();
-            iniciarsesion.setVisible(true);
-            this.dispose();
+            UsuarioLogic usuarioLogic = new UsuarioLogic();
+
+            if (UsuarioLogic.insertar(usuario)) {
+                JOptionPane.showMessageDialog(this, "Registro Exitoso");
+                frmSesion iniciarsesion = new frmSesion();
+                iniciarsesion.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuario ya existente");
+            }
         } else {
-            JOptionPane.showMessageDialog(this, "Usuario ya existente");
-        }
-    } else {
-        if (!esValido) {
-            JOptionPane.showMessageDialog(this, "Error en el teléfono. Debe ingresar un número de máximo 10 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
-            telefono.setText(""); // Limpiar el campo de teléfono
-        } else if (!contrasenaValida) {
-            JOptionPane.showMessageDialog(this, "La contraseña debe contener al menos una mayúscula, una minúscula, un dígito numérico, un carácter especial y tener un mínimo de 8 caracteres.", "Error", JOptionPane.ERROR_MESSAGE);
-            txtContra.setText(""); // Limpiar el campo de contraseña
-            txtcontra2.setText(""); // Limpiar el campo de repetir contraseña
-        } else {
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos requeridos.", "Error", JOptionPane.ERROR_MESSAGE);
+            if (!esValido) {
+                JOptionPane.showMessageDialog(this, "Error en el teléfono. Debe ingresar un número de máximo 10 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
+                telefono.setText(""); // Limpiar el campo de teléfono
+            } else if (!contrasenaValida) {
+                JOptionPane.showMessageDialog(this, "La contraseña debe contener al menos una mayúscula, una minúscula, un dígito numérico, un carácter especial y tener un mínimo de 8 caracteres.", "Error", JOptionPane.ERROR_MESSAGE);
+                txtContra.setText(""); // Limpiar el campo de contraseña
+                txtcontra2.setText(""); // Limpiar el campo de repetir contraseña
+            } else {
+                JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos requeridos.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
-}
 
-private boolean validarTelefono(String telefono) {
-    // Expresión regular para validar que solo contenga dígitos
-    String regex = "^\\d{10}$";
+    private boolean validarTelefono(String telefono) {
+        // Expresión regular para validar que solo contenga dígitos
+        String regex = "^\\d{10}$";
 
-    // Verificar si el teléfono coincide con la expresión regular
-    return telefono.matches(regex);
-}
+        // Verificar si el teléfono coincide con la expresión regular
+        return telefono.matches(regex);
+    }
 
-private boolean validarContrasena(String contrasena) {
-    // Expresión regular para validar la contraseña
-    String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&/\\-_ñ°+\\]\\['¿.,])[A-Za-z\\d@$!%*?&/\\-_ñ°+\\]\\['¿.,]{8,}$";
+    private boolean validarContrasena(String contrasena) {
+        // Expresión regular para validar la contraseña
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&/\\-_ñ°+\\]\\['¿.,])[A-Za-z\\d@$!%*?&/\\-_ñ°+\\]\\['¿.,]{8,}$";
 
-    // Verificar si la contraseña coincide con la expresión regular
-    return contrasena.matches(regex);
-        
+        // Verificar si la contraseña coincide con la expresión regular
+        return contrasena.matches(regex);
+
     }//GEN-LAST:event_RegistrarActionPerformed
 
     private void mostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarActionPerformed
-        if(mostrar.isSelected()){
-            txtContra.setEchoChar((char)0);
-        }else{
+        if (mostrar.isSelected()) {
+            txtContra.setEchoChar((char) 0);
+        } else {
             txtContra.setEchoChar('*');
         }
     }//GEN-LAST:event_mostrarActionPerformed
 
     private void mostrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar2ActionPerformed
-        if(mostrar2.isSelected()){
-            txtcontra2.setEchoChar((char)0);
-        }else{
+        if (mostrar2.isSelected()) {
+            txtcontra2.setEchoChar((char) 0);
+        } else {
             txtcontra2.setEchoChar('*');
         }
     }//GEN-LAST:event_mostrar2ActionPerformed
 
     private void btnSeleccionarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarImagenActionPerformed
 
-        
         int resultado;
-        
+
         frmbuscarimg buscar = new frmbuscarimg();
-        
-        FileNameExtensionFilter formato = new FileNameExtensionFilter ("JPG,PNG Y GIF" , "jpg", "png","gif");
-        
+
+        FileNameExtensionFilter formato = new FileNameExtensionFilter("JPG,PNG Y GIF", "jpg", "png", "gif");
+
         buscar.JFCImg.setFileFilter(formato);
-        
+
         resultado = buscar.JFCImg.showOpenDialog(null);
-        
-        if (JFileChooser.APPROVE_OPTION == resultado){
+
+        if (JFileChooser.APPROVE_OPTION == resultado) {
             archivo = buscar.JFCImg.getSelectedFile();
-            
+
             JLDireccion.setText(archivo.getAbsolutePath());
-            
+
         }
         try {
             ImageIcon ImgIcon = new ImageIcon(archivo.toString());
-            
-            Icon icono = new ImageIcon (ImgIcon.getImage().getScaledInstance(JLImg.getWidth(), JLImg.getHeight(),Image.SCALE_DEFAULT));
-            
+
+            Icon icono = new ImageIcon(ImgIcon.getImage().getScaledInstance(JLImg.getWidth(), JLImg.getHeight(), Image.SCALE_DEFAULT));
+
             JLImg.setIcon(icono);
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(null,"Error al abrir"+e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al abrir" + e);
         }
-        
-         
-        
+
+
     }//GEN-LAST:event_btnSeleccionarImagenActionPerformed
 
     private void telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefonoActionPerformed
-        
+
     }//GEN-LAST:event_telefonoActionPerformed
 
     private void ComboBoxPaisesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxPaisesActionPerformed

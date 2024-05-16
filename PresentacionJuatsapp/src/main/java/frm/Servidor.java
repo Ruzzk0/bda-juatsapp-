@@ -110,6 +110,11 @@ public void dispose() {
         btnEnviar.setBackground(new java.awt.Color(204, 204, 204));
         btnEnviar.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         btnEnviar.setText("ENVIAR");
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarActionPerformed(evt);
+            }
+        });
 
         Usuario.setText("usuario");
 
@@ -173,6 +178,10 @@ public void dispose() {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEnviarActionPerformed
 
 
     public static void main(String args[]) {

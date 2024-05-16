@@ -1,24 +1,17 @@
 package EXCEPCIONES;
 
-import Conexion.MongoDBConexion;
 import DOMINIO.Usuario;
 import PERSISTENCIA.UsuarioDAO;
-import com.mongodb.client.MongoCollection;
-import org.bson.Document;
-import org.mindrot.jbcrypt.BCrypt;
 
 public class UsuarioLogic {
-    
-     private static final UsuarioDAO usuarioDAO; 
+
+    private static final UsuarioDAO usuarioDAO;
     private static Usuario usuarioActual;
+
     static {
-        // Obtener la colección de MongoDB utilizando el método estático de la clase de conexión
-        MongoCollection<Document> collection = MongoDBConexion.obtenerColeccion();
-        // Pasar la colección a UsuarioDAO
-        usuarioDAO = new UsuarioDAO(collection);
+        usuarioDAO = new UsuarioDAO();
     }
-    
-    
+
     public static boolean autentificar(String usuario, String contra) {
         Usuario usuarioConsulta = usuarioDAO.obtener(usuario); // Utilizamos el método obtener del UsuarioDAO
         if (usuarioConsulta != null && usuarioConsulta.getContra().equals(contra)) {
@@ -29,12 +22,12 @@ public class UsuarioLogic {
         }
     }
 
-    public static boolean insertar(Usuario usuario) {
-    // Encriptar la contraseña antes de almacenarla
+    public static boolean insertar(Usuario usuario) throws PersistenciaException {
+        // Encriptar la contraseña antes de almacenarla
 //    String contrasenaEncriptada = BCrypt.hashpw(usuario.getContra(), BCrypt.gensalt());
 //    usuario.setContra(contrasenaEncriptada);
-    return usuarioDAO.insertar(usuario);
-}
+        return usuarioDAO.insertar(usuario);
+    }
 
     public static boolean modificar(Usuario usuario) {
         return usuarioDAO.modificar(usuario); // Utilizamos el método modificar del UsuarioDAO

@@ -1,62 +1,72 @@
 package Conexion;
 
 import DOMINIO.Usuario;
+import com.mongodb.ConnectionString;
+import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
+import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
+import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
+import org.bson.codecs.configuration.CodecRegistry;
+import org.bson.codecs.pojo.PojoCodecProvider;
 
-public class MongoDBConexion {
+/**
+ * Clase Conexion
+ * Esta clase proporciona la implementación de la interfaz {@link IConexion} 
+ * para conectar a una base de datos MongoDB y obtener una colección específica.
 
-    static String cadenaConexion = "mongodb://localhost:27017";
-    static String nombreBD = "Juatsapp";
-    static String nombreCol = "Usuarios";
+ * @param <V> Un tipo genérico que no se utiliza directamente en esta implementación.
+ * @param <T> El tipo de los documentos que se manejarán en la colección.
+ * Proporciona métodos para configurar la conexión y obtener una colección específica de la base de datos.
+ * Utiliza el CodecRegistry para manejar los POJOs de manera automática.
+ * 
+ */
+public class MongoDBConexion<V, T> implements IMongoDBConexion<T> {
 
-    // Método estático para obtener la colección
-    public static MongoCollection<Document> obtenerColeccion() {
-        // Crear la conexión con Mongo
-        com.mongodb.client.MongoClient mongoClient = MongoClients.create(cadenaConexion); // Establecer la conexión
-        // Crear la conexión con la bd
-        MongoDatabase database = mongoClient.getDatabase(nombreBD);
-        // Crear la conexión con la colección
-        return database.getCollection(nombreCol);
+    private String nombreBaseDatos = "Juatsapp";
+    private String cadenaConexion = "mongodb://127.0.0.1:27017";
+    private final String nombreColeccion;
+    private final Class<T> tipoBase;
+
+    /**
+     * Constructor de la clase Conexion.
+     * <p>
+     * Inicializa la conexión con la base de datos y la colección especificada.
+     * </p>
+     * 
+     * @param nombreColeccion El nombre de la colección en la base de datos.
+     * @param tipoBase La clase del tipo T que representa los documentos en la colección.
+     */
+    public MongoDBConexion(String nombreColeccion, Class<T> tipoBase) {
+        this.nombreColeccion = nombreColeccion;
+        this.tipoBase = tipoBase;
     }
 
-   public static Usuario obtenerUsuario(String usuario) {
-    // Obtener la colección utilizando el método estático
-    MongoCollection<Document> collection = obtenerColeccion();
-    // Realizar la consulta en la colección obtenida
-    Document document = collection.find(new Document("usuario", usuario)).first();
-    if (document != null) {
-        return new Usuario(
-                document.getString("nombre"),
-                document.getString("Domicilio"),
-                document.getString("telefono"),
-                document.getString("usuario"),
-                document.getString("Contra")
-        );
+    /**
+     * Obtiene la colección de MongoDB para el tipo T.
+     * <p>
+     * Configura la conexión a la base de datos MongoDB, incluyendo el uso de 
+     * un CodecRegistry para manejar automáticamente los POJOs.
+     * </p>
+     * 
+     * @return una colección de MongoDB de tipo T.
+     */
+    @Override
+    public MongoCollection<T> obtenerColeccion() {
+        CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
+                fromProviders(PojoCodecProvider.builder().automatic(true).build()));
+        MongoClientSettings settings = MongoClientSettings.builder()
+                .codecRegistry(pojoCodecRegistry).applyConnectionString(new ConnectionString(cadenaConexion))
+                .build();
+        MongoClient cliente = MongoClients.create(settings);
+
+        MongoDatabase baseDatos = cliente.getDatabase(nombreBaseDatos);
+        MongoCollection<T> coleccion = baseDatos.getCollection(nombreColeccion, tipoBase);
+
+        return coleccion;
     }
-    return null;
-}
-
-
-   public static boolean actualizarUsuario(Usuario usuario, MongoDBConexion conexion) {
-    // Obtener la colección utilizando el método estático
-    MongoCollection<Document> collection = obtenerColeccion();
-    // Definir el filtro para encontrar el documento a actualizar
-    Document filter = new Document("usuario", usuario.getUsuario());
-    // Definir la operación de actualización
-    Document update = new Document("$set", new Document()
-            .append("nombre", usuario.getNombre())
-            .append("Domicilio", usuario.getDomicilio())
-            .append("telefono", usuario.getTelefono())
-            .append("Contra", usuario.getContra())
-    );
-    // Ejecutar la operación de actualización en la colección obtenida
-    UpdateResult result = collection.updateOne(filter, update);
-    // Verificar si se modificó al menos un documento
-    return result.getModifiedCount() > 0;
-}
 }
