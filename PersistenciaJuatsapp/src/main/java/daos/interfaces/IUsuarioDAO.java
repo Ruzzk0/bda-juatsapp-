@@ -24,5 +24,4 @@ public interface IUsuarioDAO {
 
     public List<Usuario> consultarTodos() throws PersistenciaException;
 
-    public List<Usuario> obtenerContactos(Usuario usuario) throws PersistenciaException;
 }

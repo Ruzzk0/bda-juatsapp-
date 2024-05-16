@@ -4,13 +4,14 @@ import Conexion.IMongoDBConexion;
 import Conexion.MongoDBConexion;
 import DOMINIO.Usuario;
 import EXCEPCIONES.PersistenciaException;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.eq;
-import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.UpdateResult;
 import daos.interfaces.IUsuarioDAO;
-import org.bson.Document;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioDAO implements IUsuarioDAO{
 
@@ -31,13 +32,14 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
     }
 
+    @Override
     public boolean modificar(Usuario usuario) throws PersistenciaException{
         try {
             MongoCollection<Usuario> coleccion = conexion.obtenerColeccion();
             UpdateResult result = coleccion.replaceOne(eq("_id", usuario.getId()), usuario);
 
             if (result.getModifiedCount() == 1) {
-                return cliente;
+                return true;
             } else {
                 throw new PersistenciaException("No se pudo actualizar el cliente");
             }
@@ -46,9 +48,11 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
     }
 
+    @Override
     public boolean eliminar(String usuario) {
         try {
-            collection.deleteOne(Filters.eq("usuario", usuario));
+            MongoCollection<Usuario> coleccion = conexion.obtenerColeccion();
+            coleccion.deleteOne(Filters.eq("usuario", usuario));
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,20 +60,35 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
     }
 
-    public Usuario obtener(String usuario) {
-        // Obtener la colección utilizando el método estático
-        MongoCollection<Document> collection = obtenerColeccion();
-        // Realizar la consulta en la colección obtenida
-        Document document = collection.find(new Document("usuario", usuario)).first();
-        if (document != null) {
-            return new Usuario(
-                    document.getString("nombre"),
-                    document.getString("Domicilio"),
-                    document.getString("telefono"),
-                    document.getString("usuario"),
-                    document.getString("Contra")
-            );
+    @Override
+    public Usuario obtener(String usuario) throws PersistenciaException {
+        try {
+            MongoCollection<Usuario> coleccion = conexion.obtenerColeccion();
+            Usuario resultado = coleccion.find(eq("usuario", usuario)).first();
+            if (resultado != null) {
+                return resultado;
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al encontrar cliente por usuario: " + e.getMessage());
         }
-        return null;
+    }
+
+    @Override
+    public List<Usuario> consultarTodos() throws PersistenciaException {
+        try {
+            MongoCollection<Usuario> coleccion = conexion.obtenerColeccion();
+            FindIterable<Usuario> usuariosConsulta = coleccion.find();
+            List<Usuario> listaClientes = new ArrayList<>();
+
+            for (Usuario usauario : usuariosConsulta) {
+                listaClientes.add(usauario);
+            }
+
+            return listaClientes;
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al consultar usuarios: " + e.getMessage());
+        }
     }
 }

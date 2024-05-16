@@ -41,7 +41,6 @@ private void cargarDatosUsuario() {
     // Establecer los datos en los campos de texto
     if (usuarioActual != null) {
         nombre.setText(usuarioActual.getNombre());
-        Domicilio.setText(usuarioActual.getDomicilio());
         telefono.setText(usuarioActual.getTelefono());
         txtusuario.setText(usuarioActual.getUsuario());
         // Y así sucesivamente para los demás campos
