@@ -1,6 +1,7 @@
 package DOMINIO;
 
 import java.io.Serializable;
+import java.util.Date;
 import org.bson.types.ObjectId;
 
 /**
@@ -10,6 +11,9 @@ import org.bson.types.ObjectId;
  */
 public class Usuario implements Serializable {
 
+    /**
+     * Id del usuario.
+     */
     private ObjectId id;
     
     /**
@@ -36,6 +40,16 @@ public class Usuario implements Serializable {
      * Contraseña del usuario.
      */
     private String Contra;
+    
+    /**
+     * Fecha de nacimiento del usuario
+     */
+    private Date fechaNacimiento;
+    
+    /**
+     * Sexo del usuario
+     */
+    private String sexo;
 
     /**
      * Constructor predeterminado de la clase Usuario.
@@ -164,6 +178,38 @@ public class Usuario implements Serializable {
      */
     public void setId(ObjectId id) {
         this.id = id;
+    }
+
+    /**
+     * Obtiene la fecha de nacimiento del usuario.
+     * @return Fecha de nacimiento.
+     */
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    /**
+     * Asigna la fecha de nacimiento del usuario.
+     * @param fechaNacimiento fecha de nacimiento.
+     */
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    /**
+     * Obtienen el sexo del usuario.
+     * @return Sexo del usuario
+     */
+    public String getSexo() {
+        return sexo;
+    }
+
+    /**
+     * Asigna el sexo del usuario.
+     * @param sexo Sexo del usuario.
+     */
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
     
 }
