@@ -1,7 +1,7 @@
 
 package frm;
 
-import DOMINIO.Chats;
+import DOMINIO.Chat;
 import DOMINIO.Usuario;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -32,9 +32,9 @@ int contador =0;
     }
     
     public void CargarDatos(){
-        Chats a ;
+        Chat a ;
         for(int i=0;i<frmChats.contenedor.size();i++){
-        a=(Chats)frmChats.contenedor.get(i);
+        a=(Chat)frmChats.contenedor.get(i);
         Usuarios.insertRow(contador, new Object[]{});
         Usuarios.setValueAt(a.getUsuarioChat(), contador, 0);
     }

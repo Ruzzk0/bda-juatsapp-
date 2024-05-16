@@ -1,6 +1,6 @@
 
 package frm;
-import DOMINIO.Chats;
+import DOMINIO.Chat;
 import DOMINIO.Usuario;
 import java.util.LinkedList;
 
@@ -184,7 +184,7 @@ public class frmChats extends javax.swing.JFrame {
     private void nuevochatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevochatActionPerformed
         
     String usuarioChat = NuevoUsuario.getText();
-    Chats usu = new Chats(usuarioChat);
+    Chat usu = new Chat(usuarioChat);
     contenedor.add(usu);
     NuevoUsuario.setText("");
     frmTodoChats todo = new frmTodoChats(usuarioChat); 
