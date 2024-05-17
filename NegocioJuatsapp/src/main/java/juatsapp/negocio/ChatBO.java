@@ -43,28 +43,44 @@ public class ChatBO implements IChatBO{
         try {
             return chatDAO.guardar(conversorChat.DtoAEntidad(chat));
         } catch (Exception e) {
-            throw new NegocioException("No pudo guardarse el chat: ", e);
+            throw new NegocioException("No se pudo guardarse el chat: ", e);
         }
     }
 
     @Override
     public boolean eliminar(ChatDTO chat) throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            return chatDAO.eliminar(conversorChat.DtoAEntidad(chat));
+        } catch (Exception e) {
+            throw new NegocioException("No se pudo eliminar el chat: ", e);
+        }
     }
 
     @Override
     public boolean vaciar(ChatDTO chat) throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            return chatDAO.vaciar(conversorChat.DtoAEntidad(chat));
+        } catch (Exception e) {
+            throw new NegocioException("No se pudo vaciar el chat: ", e);
+        }
     }
 
     @Override
     public ChatDTO obtener(UsuarioDTO usuarioRemitente, UsuarioDTO usuarioRemisor) throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            return conversorChat.entidadADto(chatDAO.obtener(conversorUsuario.DtoAEntidad(usuarioRemisor), conversorUsuario.DtoAEntidad(usuarioRemisor)));
+        } catch (Exception e) {
+            throw new NegocioException("No pudo guardarse el chat: ", e);
+        }
     }
 
     @Override
     public List<ChatDTO> consultarTodos() throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            return conversorChat.listaChatsADto(chatDAO.consultarTodos());
+        } catch (Exception e) {
+            throw new NegocioException("No pudo guardarse el chat: ", e);
+        }
     }
 
     @Override
