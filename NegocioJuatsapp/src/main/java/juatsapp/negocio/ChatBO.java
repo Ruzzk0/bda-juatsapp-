@@ -4,6 +4,9 @@
  */
 package juatsapp.negocio;
 
+import DOMINIO.Chat;
+import DOMINIO.Usuario;
+import EXCEPCIONES.PersistenciaException;
 import PERSISTENCIA.ChatDAO;
 import PERSISTENCIA.UsuarioDAO;
 import daos.interfaces.IChatDAO;
@@ -158,6 +161,44 @@ public class ChatBO implements IChatBO {
         try {
             return conversorMensajes.listaMensajesADto(conversorChat.DtoAEntidad(chat).getMensajes());
         } catch (Exception e) {
+            throw new NegocioException("No se pudo recuperar la conversación: ", e);
+        }
+    }
+
+    /**
+     * Obtiene una lista con los chats del usuario.
+     *
+     * @param usuario El usuario.
+     * @return La lista de chats que contienen al usuario o una lista vacía si
+     * no se encuentra ninguno.
+     * @throws NegocioException Si ocurre un error durante el proceso de
+     * obtención.
+     */
+    @Override
+    public List<ChatDTO> obtener(UsuarioDTO usuario) throws NegocioException {
+        try {
+            List<Chat> conversacionesUsuario = chatDAO.obtener(conversorUsuario.DtoAEntidad(usuario));
+            return conversorChat.listaChatsADto(conversacionesUsuario);
+        } catch (Exception e) {
+            throw new NegocioException("No se pudo recuperar la conversación: ", e);
+        }
+    }
+
+    /**
+     * Actualiza todos los datos del usuario en todos los chats relacionados a
+     * el;
+     *
+     * @param usuario Usuario actualizado
+     * @return True si fue actualizado correctamente en todos los chats, false
+     * si no.
+     * @throws NegocioException Si falla al actualizar.
+     */
+    @Override
+    public boolean actualizarUsuarioEnChats(UsuarioDTO usuario) throws NegocioException{
+        try {
+            return chatDAO.actualizarUsuarioEnChats(conversorUsuario.DtoAEntidad(usuario));
+        } catch (Exception e) {
+            e.printStackTrace();
             throw new NegocioException("No se pudo recuperar la conversación: ", e);
         }
     }

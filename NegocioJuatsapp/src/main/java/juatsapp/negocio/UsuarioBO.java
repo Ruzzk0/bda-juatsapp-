@@ -98,7 +98,10 @@ public class UsuarioBO implements IUsuarioBO {
     @Override
     public UsuarioDTO obtener(String usuario) throws NegocioException {
         try {
-            return conversorUsuario.entidadADto(usuarioDAO.obtener(usuario));
+            UsuarioDTO resultado = conversorUsuario.entidadADto(usuarioDAO.obtener(usuario));
+            String contra = encriptador.desencriptar(resultado.getContra());
+            resultado.setContra(contra);
+            return resultado;
         } catch (Exception e) {
             Logger.getLogger(UsuarioBO.class.getName()).log(Level.SEVERE, null, e);
             throw new NegocioException("Error al obtener el usuario: ", e);

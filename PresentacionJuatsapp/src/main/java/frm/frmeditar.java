@@ -1,19 +1,26 @@
 package frm;
 
-import Conexion.MongoDBConexion;
-import DOMINIO.Usuario;
-import EXCEPCIONES.UsuarioLogic;
+import excepciones.NegocioException;
 import java.awt.Image;
 import java.io.File;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import juatsapp.dtos.UsuarioDTO;
+import juatsapp.negocio.UsuarioBO;
+import juatsapp.negocioInterfaces.IUsuarioBO;
+import presentacion.Control.ControlPresentacion;
 
 /**
  *
@@ -21,37 +28,37 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class FrmEditar extends javax.swing.JFrame {
 
-    private String Usuario;
+    ControlPresentacion control;
+    IUsuarioBO funcionalidadesUsuario;
 
-     public FrmEditar(String usuario) {
+    public FrmEditar() {
         initComponents();
-        this.Usuario = usuario;
-        cargarDatosUsuario();
+        control.getInstance();
+        funcionalidadesUsuario = new UsuarioBO();
     }
 
-   public FrmEditar() {
-    initComponents(); 
-}
-
-   
-private void cargarDatosUsuario() {
-    // Recuperar los datos del usuario desde tu sistema de almacenamiento
-    Usuario usuarioActual = MongoDBConexion.obtenerUsuario(Usuario);
-
-    // Establecer los datos en los campos de texto
-    if (usuarioActual != null) {
-        nombre.setText(usuarioActual.getNombre());
-        telefono.setText(usuarioActual.getTelefono());
-        txtusuario.setText(usuarioActual.getUsuario());
-        // Y así sucesivamente para los demás campos
-    } else {
-        // Manejar el caso en que no se encuentre el usuario
-        System.out.println("El usuario no fue encontrado");
+    private void cargarDatosUsuario() {
+        // Recuperar los datos del usuario desde tu sistema de almacenamiento
+        control.getUsuarioActivo();
+        // Establecer los datos en los campos de texto
+        if (control.getUsuarioActivo() != null) {
+            nombre.setText(control.getUsuarioActivo().getNombre());
+            telefono.setText(control.getUsuarioActivo().getTelefono());
+            txtusuario.setText(control.getUsuarioActivo().getUsuario());
+            ComboBoxPaises.setSelectedItem(control.getUsuarioActivo().getRegion());
+            sexo.setSelectedItem(control.getUsuarioActivo().getSexo());
+            Date fechaNacimiento = control.getUsuarioActivo().getFechaNacimiento();
+            LocalDate fecha = fechaNacimiento.toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate();
+            dtpkFechaNacimiento.setDate(fecha);
+            txtContra.setText(control.getUsuarioActivo().getContra());
+        } else {
+            // Manejar el caso en que no se encuentre el usuario
+            System.out.println("El usuario no fue encontrado");
+        }
     }
-}
 
-
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -85,6 +92,7 @@ private void cargarDatosUsuario() {
         txtusuario = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
+        dtpkFechaNacimiento = new com.github.lgooddatepicker.components.DatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -319,7 +327,10 @@ private void cargarDatosUsuario() {
                                     .addComponent(sexo, javax.swing.GroupLayout.Alignment.LEADING, 0, 227, Short.MAX_VALUE)
                                     .addComponent(telefono)
                                     .addComponent(ComboBoxPaises, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jLabel2)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(dtpkFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addGap(18, 18, 18)
@@ -339,8 +350,10 @@ private void cargarDatosUsuario() {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addComponent(jLabel2)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(dtpkFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -397,37 +410,78 @@ private void cargarDatosUsuario() {
 
     private void modificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar1ActionPerformed
 
-//        if (!nombre.getText().isEmpty()&&
-//            !Domicilio.getText().isEmpty()&&
-//            //sexo
-//            !telefono.getText().isEmpty()&&
-//            !txtusuario.getText().isEmpty()&&
-//            !txtContra.getText().isEmpty()&&
-//            txtcontra2.getText().equals(txtContra.getText())){
-//
-//            Usuario usuario = new Usuario(nombre.getText(),Domicilio.getText(),
-//                telefono.getText(),txtusuario.getText()
-//                ,txtContra.getText());
-//            if (UsuarioLogic.modificar(usuario)){
-//                JOptionPane.showMessageDialog(this, "Modificacion Exitosa");
-//            }else {
-//                JOptionPane.showMessageDialog(this, "Usuario No encontrado");
-//            }
-//
-//        }
+        String telefonoIngresado = telefono.getText();
+        boolean esValido = validarTelefono(telefonoIngresado);
+        String contrasenaIngresada = txtContra.getText();
+        boolean contrasenaValida = validarContrasena(contrasenaIngresada);
 
-   
+        if (!nombre.getText().isEmpty()
+                && ComboBoxPaises.getSelectedItem() != null
+                && !txtusuario.getText().isEmpty()
+                && !contrasenaIngresada.isEmpty()
+                && contrasenaIngresada.equals(txtcontra2.getText())
+                && esValido
+                && contrasenaValida) {
+
+            UsuarioDTO usuario = new UsuarioDTO(nombre.getText(), ComboBoxPaises.getSelectedItem().toString(),
+                    telefonoIngresado, txtusuario.getText(),
+                    contrasenaIngresada);
+
+            try {
+                if (funcionalidadesUsuario.insertar(usuario)) {
+                    JOptionPane.showMessageDialog(this, "Registro Exitoso");
+                    FrmInicioSesion iniciarsesion = new FrmInicioSesion();
+                    iniciarsesion.setVisible(true);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Usuario ya existente");
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(FrmRegistro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            if (!esValido) {
+                JOptionPane.showMessageDialog(this, "Error en el teléfono. Debe ingresar un número de máximo 10 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
+                telefono.setText(""); // Limpiar el campo de teléfono
+            } else if (!contrasenaValida) {
+                JOptionPane.showMessageDialog(this, "La contraseña debe contener al menos una mayúscula, una minúscula, un dígito numérico, un carácter especial y tener un mínimo de 8 caracteres.", "Error", JOptionPane.ERROR_MESSAGE);
+                txtContra.setText(""); // Limpiar el campo de contraseña
+                txtcontra2.setText(""); // Limpiar el campo de repetir contraseña
+            } else {
+                JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos requeridos.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
 
     }//GEN-LAST:event_modificar1ActionPerformed
 
+    private boolean validarTelefono(String telefono) {
+        // Expresión regular para validar que solo contenga dígitos
+        String regex = "^\\d{10}$";
+
+        // Verificar si el teléfono coincide con la expresión regular
+        return telefono.matches(regex);
+    }
+
+    private boolean validarContrasena(String contrasena) {
+        // Expresión regular para validar la contraseña
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&/\\-_ñ°+\\]\\['¿.,])[A-Za-z\\d@$!%*?&/\\-_ñ°+\\]\\['¿.,]{8,}$";
+
+        // Verificar si la contraseña coincide con la expresión regular
+        return contrasena.matches(regex);
+
+    }
+
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
 
-        if (!txtusuario.getText().isEmpty()){
-
-            if (UsuarioLogic.eliminar(txtusuario.getText())){
-                JOptionPane.showMessageDialog(this, "Usario Eliminado");
-            }else {
-                JOptionPane.showMessageDialog(this, "Usuario No encontrado");
+        if (!txtusuario.getText().isEmpty()) {
+            try {
+                if (funcionalidadesUsuario.eliminar(txtusuario.getText())) {
+                    JOptionPane.showMessageDialog(this, "Usario Eliminado");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Usuario No encontrado");
+                }
+            } catch (NegocioException ex) {
+                Logger.getLogger(FrmEditar.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
@@ -437,24 +491,24 @@ private void cargarDatosUsuario() {
     private void btnSeleccionarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarImagenActionPerformed
         int resultado;
 
-    FrmBuscarImg buscar = new FrmBuscarImg();
-    FileNameExtensionFilter formato = new FileNameExtensionFilter("JPG,PNG Y GIF", "jpg", "png", "gif");
-    buscar.JFCImg.setFileFilter(formato);
+        FrmBuscarImg buscar = new FrmBuscarImg();
+        FileNameExtensionFilter formato = new FileNameExtensionFilter("JPG,PNG Y GIF", "jpg", "png", "gif");
+        buscar.JFCImg.setFileFilter(formato);
 
-    resultado = buscar.JFCImg.showOpenDialog(null);
+        resultado = buscar.JFCImg.showOpenDialog(null);
 
-    if (JFileChooser.APPROVE_OPTION == resultado) {
-        File archivo = buscar.JFCImg.getSelectedFile();
-        JLDireccion.setText(archivo.getAbsolutePath());
+        if (JFileChooser.APPROVE_OPTION == resultado) {
+            File archivo = buscar.JFCImg.getSelectedFile();
+            JLDireccion.setText(archivo.getAbsolutePath());
 
-        try {
-            ImageIcon ImgIcon = new ImageIcon(archivo.toString());
-            Icon icono = new ImageIcon(ImgIcon.getImage().getScaledInstance(JLImg.getWidth(), JLImg.getHeight(), Image.SCALE_DEFAULT));
-            JLImg.setIcon(icono);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al abrir: " + e.getMessage());
+            try {
+                ImageIcon ImgIcon = new ImageIcon(archivo.toString());
+                Icon icono = new ImageIcon(ImgIcon.getImage().getScaledInstance(JLImg.getWidth(), JLImg.getHeight(), Image.SCALE_DEFAULT));
+                JLImg.setIcon(icono);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al abrir: " + e.getMessage());
+            }
         }
-    }
 
     }//GEN-LAST:event_btnSeleccionarImagenActionPerformed
 
@@ -475,17 +529,17 @@ private void cargarDatosUsuario() {
     }//GEN-LAST:event_sexoActionPerformed
 
     private void mostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarActionPerformed
-        if(mostrar.isSelected()){
-            txtContra.setEchoChar((char)0);
-        }else{
+        if (mostrar.isSelected()) {
+            txtContra.setEchoChar((char) 0);
+        } else {
             txtContra.setEchoChar('*');
         }
     }//GEN-LAST:event_mostrarActionPerformed
 
     private void mostrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar2ActionPerformed
-        if(mostrar2.isSelected()){
-            txtcontra2.setEchoChar((char)0);
-        }else{
+        if (mostrar2.isSelected()) {
+            txtcontra2.setEchoChar((char) 0);
+        } else {
             txtcontra2.setEchoChar('*');
         }
     }//GEN-LAST:event_mostrar2ActionPerformed
@@ -495,59 +549,22 @@ private void cargarDatosUsuario() {
     }//GEN-LAST:event_txtusuarioActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        
-        
-        
+
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void REGRESARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REGRESARActionPerformed
-     // Mostrar un cuadro de diálogo de confirmación
-    int opcion = JOptionPane.showConfirmDialog(this, "Por seguridad ira al inisio de sesion, Esto cerrará la ventana actual.", "Confirmación", JOptionPane.YES_NO_OPTION);
-    
-    // Verificar la opción seleccionada por el usuario
-    if (opcion == JOptionPane.YES_OPTION) {
-        // Si el usuario elige sí, regresar al inicio de sesión
-        FrmMenuPrincipal inicio = new FrmMenuPrincipal();
-        inicio.setVisible(true);
-        this.dispose();
-    }
-    }//GEN-LAST:event_REGRESARActionPerformed
+        // Mostrar un cuadro de diálogo de confirmación
+        int opcion = JOptionPane.showConfirmDialog(this, "Por seguridad ira al inisio de sesion, Esto cerrará la ventana actual.", "Confirmación", JOptionPane.YES_NO_OPTION);
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmEditar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmEditar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmEditar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmEditar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        // Verificar la opción seleccionada por el usuario
+        if (opcion == JOptionPane.YES_OPTION) {
+            // Si el usuario elige sí, regresar al inicio de sesión
+            FrmMenuPrincipal inicio = new FrmMenuPrincipal();
+            inicio.setVisible(true);
+            this.dispose();
         }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmEditar(null).setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_REGRESARActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JComboBox<String> ComboBoxPaises;
@@ -556,6 +573,7 @@ private void cargarDatosUsuario() {
     private javax.swing.JButton REGRESAR;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnSeleccionarImagen;
+    private com.github.lgooddatepicker.components.DatePicker dtpkFechaNacimiento;
     private javax.swing.JButton eliminar;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

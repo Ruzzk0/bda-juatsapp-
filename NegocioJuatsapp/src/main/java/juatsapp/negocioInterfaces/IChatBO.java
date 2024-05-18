@@ -95,4 +95,25 @@ public interface IChatBO {
      * @throws NegocioException Si ocurre un error durante la operación.
      */
     public List<MensajeDTO> consultarMensajes(ChatDTO chat) throws NegocioException;
+    
+    /**
+     * Obtiene una lista con los chats del usuario.
+     *
+     * @param usuario El usuario.
+     * @return La lista de chats que contienen al usuario o una lista vacía si
+     * no se encuentra ninguno.
+     * @throws NegocioException Si ocurre un error durante el proceso de
+     * obtención.
+     */
+    public List<ChatDTO> obtener(UsuarioDTO usuario) throws NegocioException;
+    
+    /**
+     * Actualiza todos los datos del usuario en todos los chats relacionados a
+     * el;
+     *
+     * @param usuario Usuario actualizado
+     * @return True si fue actualizado correctamente en todos los chats, false
+     * si no.
+     */
+    public boolean actualizarUsuarioEnChats(UsuarioDTO usuario) throws NegocioException;
 }

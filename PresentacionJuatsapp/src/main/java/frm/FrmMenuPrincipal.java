@@ -1,17 +1,22 @@
 
 package frm;
 
+import presentacion.Control.ControlPresentacion;
+
 /**
  *
  * @author Ruzzky
  */
 public class FrmMenuPrincipal extends javax.swing.JFrame {
 
+    ControlPresentacion control;
+    
     /**
      * Creates new form frmInicio
      */
     public FrmMenuPrincipal() {
         initComponents();
+        control = ControlPresentacion.getInstance();
     }
 
     /**
@@ -27,9 +32,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        sesion = new javax.swing.JButton();
-        registrar = new javax.swing.JButton();
-        salir = new javax.swing.JButton();
+        btnInicioSesion = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -69,30 +74,30 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        sesion.setBackground(new java.awt.Color(0, 102, 153));
-        sesion.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        sesion.setText("INICIAR SESION");
-        sesion.addActionListener(new java.awt.event.ActionListener() {
+        btnInicioSesion.setBackground(new java.awt.Color(0, 102, 153));
+        btnInicioSesion.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        btnInicioSesion.setText("INICIAR SESION");
+        btnInicioSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sesionActionPerformed(evt);
+                btnInicioSesionActionPerformed(evt);
             }
         });
 
-        registrar.setBackground(new java.awt.Color(0, 102, 153));
-        registrar.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        registrar.setText("REGISTRAR");
-        registrar.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrar.setBackground(new java.awt.Color(0, 102, 153));
+        btnRegistrar.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        btnRegistrar.setText("REGISTRAR");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrarActionPerformed(evt);
+                btnRegistrarActionPerformed(evt);
             }
         });
 
-        salir.setBackground(new java.awt.Color(0, 102, 153));
-        salir.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        salir.setText("SALIR");
-        salir.addActionListener(new java.awt.event.ActionListener() {
+        btnSalir.setBackground(new java.awt.Color(0, 102, 153));
+        btnSalir.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        btnSalir.setText("SALIR");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                salirActionPerformed(evt);
+                btnSalirActionPerformed(evt);
             }
         });
 
@@ -110,9 +115,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(141, 141, 141)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(registrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(sesion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
-                    .addComponent(salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnRegistrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnInicioSesion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -128,11 +133,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61)
-                .addComponent(sesion, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnInicioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
-                .addComponent(registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
-                .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -155,59 +160,24 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sesionActionPerformed
-        FrmInicioSesion iniciarsesion = new FrmInicioSesion();
-        iniciarsesion.setVisible(true);
+    private void btnInicioSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioSesionActionPerformed
         this.dispose();
-    }//GEN-LAST:event_sesionActionPerformed
+        control.mostrarInicioSesion();
+    }//GEN-LAST:event_btnInicioSesionActionPerformed
 
-    private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
-        FrmRegistro registra= new FrmRegistro();
-        registra.setVisible(true);
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         this.dispose();
-    }//GEN-LAST:event_registrarActionPerformed
+        control.mostrarRegistro();
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
-    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         System.exit(0); 
-    }//GEN-LAST:event_salirActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmMenuPrincipal().setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnInicioSesion;
+    private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -215,8 +185,5 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JButton registrar;
-    private javax.swing.JButton salir;
-    private javax.swing.JButton sesion;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,13 +2,21 @@ package frm;
 
 import DOMINIO.Chat;
 import DOMINIO.Usuario;
+import excepciones.NegocioException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import juatsapp.dtos.ChatDTO;
+import juatsapp.dtos.UsuarioDTO;
 import juatsapp.negocio.ChatBO;
 import juatsapp.negocio.UsuarioBO;
 import juatsapp.negocioInterfaces.IChatBO;
 import juatsapp.negocioInterfaces.IUsuarioBO;
+import presentacion.Control.ControlPresentacion;
 
 /**
  *
@@ -18,19 +26,16 @@ public class FrmNuevoChat extends javax.swing.JFrame {
 
     IChatBO chatFuncionalidades;
     IUsuarioBO usuarioFuncionalidades;
+    ControlPresentacion control;
 
     /**
      * Creates new form frmChats
      */
-    public FrmNuevoChat(Usuario usuario) {
+    public FrmNuevoChat() {
         initComponents();
         chatFuncionalidades = new ChatBO();
         usuarioFuncionalidades = new UsuarioBO();
-    }
-
-    FrmNuevoChat() {
-        ChatDTO nuevoChat = new ChatDTO();
-
+        control = ControlPresentacion.getInstance();
     }
 
     @SuppressWarnings("unchecked")
@@ -182,15 +187,23 @@ public class FrmNuevoChat extends javax.swing.JFrame {
     }//GEN-LAST:event_cerrarsesionActionPerformed
 
     private void btnNuevoChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoChatActionPerformed
-        String usuarioChat = NuevoUsuario.getText();
-        ChatDTO usu = new ChatDTO();
-        usu.setFechaCreacion(new Date());
-        usu.setParticipantes(contenedor);
-        contenedor.add(usu);
-        NuevoUsuario.setText("");
-        FrmListaChats todo = new FrmListaChats(usuarioChat);
-        todo.setVisible(true);
-        this.dispose();
+        if (!NuevoUsuario.getText().isEmpty()) {
+            String usuarioChat = NuevoUsuario.getText();
+            ChatDTO chat = new ChatDTO();
+            chat.setFechaCreacion(new Date());
+            List<UsuarioDTO> participantes = new ArrayList<>();
+            participantes.add(control.getUsuarioActivo());
+            try {
+                usuarioFuncionalidades.obtener(usuarioChat);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "No se encontró al usuario.", 
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            chat.setParticipantes(participantes);
+        }else{
+            JOptionPane.showMessageDialog(this, "Favor de no dejar campos vacíos.");
+        }
+        
     }//GEN-LAST:event_btnNuevoChatActionPerformed
 
     private void editarperfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarperfilActionPerformed

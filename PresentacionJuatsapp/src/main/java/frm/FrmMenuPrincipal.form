@@ -47,9 +47,9 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="141" pref="141" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="registrar" alignment="0" max="32767" attributes="0"/>
-                      <Component id="sesion" alignment="0" pref="242" max="32767" attributes="0"/>
-                      <Component id="salir" max="32767" attributes="0"/>
+                      <Component id="btnRegistrar" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnInicioSesion" alignment="0" pref="242" max="32767" attributes="0"/>
+                      <Component id="btnSalir" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -69,11 +69,11 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                  <Component id="sesion" min="-2" pref="51" max="-2" attributes="0"/>
+                  <Component id="btnInicioSesion" min="-2" pref="51" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                  <Component id="registrar" min="-2" pref="52" max="-2" attributes="0"/>
+                  <Component id="btnRegistrar" min="-2" pref="52" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="salir" min="-2" pref="47" max="-2" attributes="0"/>
+                  <Component id="btnSalir" min="-2" pref="47" max="-2" attributes="0"/>
                   <EmptySpace pref="28" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -146,7 +146,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="sesion">
+        <Component class="javax.swing.JButton" name="btnInicioSesion">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="66" red="0" type="rgb"/>
@@ -157,10 +157,10 @@
             <Property name="text" type="java.lang.String" value="INICIAR SESION"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sesionActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInicioSesionActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="registrar">
+        <Component class="javax.swing.JButton" name="btnRegistrar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="66" red="0" type="rgb"/>
@@ -171,10 +171,10 @@
             <Property name="text" type="java.lang.String" value="REGISTRAR"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="registrarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="salir">
+        <Component class="javax.swing.JButton" name="btnSalir">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="66" red="0" type="rgb"/>
@@ -185,7 +185,7 @@
             <Property name="text" type="java.lang.String" value="SALIR"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="salirActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">

@@ -1,7 +1,6 @@
 package frm;
 
-import DOMINIO.Usuario;
-import EXCEPCIONES.UsuarioLogic;
+import excepciones.NegocioException;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import javax.swing.ImageIcon;
@@ -17,6 +16,12 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import juatsapp.dtos.UsuarioDTO;
+import juatsapp.negocio.UsuarioBO;
+import juatsapp.negocioInterfaces.IUsuarioBO;
+import presentacion.Control.ControlPresentacion;
 
 /**
  *
@@ -24,11 +29,16 @@ import java.util.Locale;
  */
 public class FrmRegistro extends javax.swing.JFrame {
 
+    ControlPresentacion control;
+    IUsuarioBO funcionalidadesUsuario;
+    
     /**
      * Creates new form frmRegistrar
      */
     public FrmRegistro() {
         initComponents();
+        control = ControlPresentacion.getInstance();
+        funcionalidadesUsuario = new UsuarioBO();
     }
 
     File archivo; // objeto tipo file para contener el archivo
@@ -429,26 +439,28 @@ public class FrmRegistro extends javax.swing.JFrame {
         boolean contrasenaValida = validarContrasena(contrasenaIngresada);
 
         if (!nombre.getText().isEmpty()
-                && !Domicilio.getText().isEmpty()
+                && ComboBoxPaises.getSelectedItem() != null
                 && !txtusuario.getText().isEmpty()
                 && !contrasenaIngresada.isEmpty()
                 && contrasenaIngresada.equals(txtcontra2.getText())
                 && esValido
                 && contrasenaValida) {
 
-            Usuario usuario = new Usuario(nombre.getText(), Domicilio.getText(),
+            UsuarioDTO usuario = new UsuarioDTO(nombre.getText(), ComboBoxPaises.getSelectedItem().toString(),
                     telefonoIngresado, txtusuario.getText(),
                     contrasenaIngresada);
 
-            UsuarioLogic usuarioLogic = new UsuarioLogic();
-
-            if (UsuarioLogic.insertar(usuario)) {
-                JOptionPane.showMessageDialog(this, "Registro Exitoso");
-                FrmInicioSesion iniciarsesion = new FrmInicioSesion();
-                iniciarsesion.setVisible(true);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "Usuario ya existente");
+            try {
+                if (funcionalidadesUsuario.insertar(usuario)) {
+                    JOptionPane.showMessageDialog(this, "Registro Exitoso");
+                    FrmInicioSesion iniciarsesion = new FrmInicioSesion();
+                    iniciarsesion.setVisible(true);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Usuario ya existente");
+                }
+            } catch (NegocioException ex) {
+                Logger.getLogger(FrmRegistro.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             if (!esValido) {
@@ -540,41 +552,6 @@ public class FrmRegistro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtContraActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmRegistro().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JComboBox<String> ComboBoxPaises;

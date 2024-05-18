@@ -89,5 +89,26 @@ public interface IChatDAO {
      * @throws PersistenciaException Si ocurre un error durante la operación.
      */
     public List<Mensaje> consultarMensajes(Chat chat) throws PersistenciaException;
+    
+    
+    /**
+     * Obtiene una lista con los chats del usuario.
+     *
+     * @param usuario El usuario.
+     * @return La lista de chats que contienen al usuario o una lista vacía si
+     * no se encuentra ninguno.
+     * @throws PersistenciaException Si ocurre un error durante el proceso de
+     * obtención.
+     */
+    public List<Chat> obtener(Usuario usuario) throws PersistenciaException;
 
+    /**
+     * Actualiza todos los datos del usuario en todos los chats relacionados a
+     * el;
+     *
+     * @param usuario Usuario actualizado
+     * @return True si fue actualizado correctamente en todos los chats, false
+     * si no.
+     */
+    public boolean actualizarUsuarioEnChats(Usuario usuario);
 }

@@ -1,8 +1,9 @@
-
 package frm;
 
-import EXCEPCIONES.UsuarioLogic;
 import javax.swing.JOptionPane;
+import juatsapp.negocio.UsuarioBO;
+import juatsapp.negocioInterfaces.IUsuarioBO;
+import presentacion.Control.ControlPresentacion;
 
 /**
  *
@@ -10,38 +11,41 @@ import javax.swing.JOptionPane;
  */
 public class FrmInicioSesion extends javax.swing.JFrame {
 
-    
+    ControlPresentacion control;
+    IUsuarioBO usuarioControl;
+
     public FrmInicioSesion() {
         initComponents();
+        control = ControlPresentacion.getInstance();
+        usuarioControl = new UsuarioBO();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        regresar = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtusuario = new javax.swing.JTextField();
-        txtcontra = new javax.swing.JPasswordField();
+        txtUsuario = new javax.swing.JTextField();
+        txtContra = new javax.swing.JPasswordField();
         mostrar = new javax.swing.JCheckBox();
-        ingresar = new javax.swing.JButton();
+        btnIngresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        regresar.setBackground(new java.awt.Color(13, 101, 159));
-        regresar.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        regresar.setText("REGRESAR");
-        regresar.addActionListener(new java.awt.event.ActionListener() {
+        btnRegresar.setBackground(new java.awt.Color(13, 101, 159));
+        btnRegresar.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        btnRegresar.setText("REGRESAR");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                regresarActionPerformed(evt);
+                btnRegresarActionPerformed(evt);
             }
         });
 
@@ -83,15 +87,15 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         jLabel3.setText("CONTRASEÑA:");
 
-        txtusuario.addActionListener(new java.awt.event.ActionListener() {
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtusuarioActionPerformed(evt);
+                txtUsuarioActionPerformed(evt);
             }
         });
 
-        txtcontra.addActionListener(new java.awt.event.ActionListener() {
+        txtContra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcontraActionPerformed(evt);
+                txtContraActionPerformed(evt);
             }
         });
 
@@ -102,12 +106,12 @@ public class FrmInicioSesion extends javax.swing.JFrame {
             }
         });
 
-        ingresar.setBackground(new java.awt.Color(13, 101, 159));
-        ingresar.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        ingresar.setText("INGRESAR");
-        ingresar.addActionListener(new java.awt.event.ActionListener() {
+        btnIngresar.setBackground(new java.awt.Color(13, 101, 159));
+        btnIngresar.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        btnIngresar.setText("INGRESAR");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ingresarActionPerformed(evt);
+                btnIngresarActionPerformed(evt);
             }
         });
 
@@ -122,7 +126,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtusuario, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                        .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
                         .addGap(150, 150, 150))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -131,13 +135,13 @@ public class FrmInicioSesion extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(mostrar))
-                            .addComponent(txtcontra, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addComponent(regresar)
+                        .addComponent(btnRegresar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
-                        .addComponent(ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(78, 78, 78))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -147,17 +151,17 @@ public class FrmInicioSesion extends javax.swing.JFrame {
                 .addGap(64, 64, 64)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(61, 61, 61)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtcontra, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mostrar)
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
@@ -177,89 +181,45 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
-        FrmMenuPrincipal inicio = new FrmMenuPrincipal();
-        inicio.setVisible(true);
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         this.dispose();
-    }//GEN-LAST:event_regresarActionPerformed
+        control.mostrarMenuPrincipal();
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarActionPerformed
-        
-        if(!txtusuario.getText().isEmpty()&&!txtcontra.getText().isEmpty()){
-            if(UsuarioLogic.autentificar(txtusuario.getText(),txtcontra.getText())){
-                JOptionPane.showMessageDialog(this,"Bienvenido a Juatsapp");
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        if (!txtUsuario.getText().isEmpty() && !txtContra.getText().isEmpty()) {
+            if (control.autentificar(txtUsuario.getText(), txtContra.getText())) {
+                JOptionPane.showMessageDialog(this, "Bienvenido a Juatsapp");
                 this.dispose();
-                   
-                FrmNuevoChat frmchats = new FrmNuevoChat(UsuarioLogic.obtener(txtusuario.getText()));
-                frmchats.setVisible(true);
-                
-            }else{
-                JOptionPane.showMessageDialog(this,"Alguno de los dos es incorrecto");
+                control.mostrarMenuChats();
+            } else {
+                JOptionPane.showMessageDialog(this, "Alguno de los dos es incorrecto");
             }
-        }else{
-            JOptionPane.showMessageDialog(this,"Falta rellenar el usuario o la contraseña");
+        } else {
+            JOptionPane.showMessageDialog(this, "Falta rellenar el usuario o la contraseña");
         }
-        
-        
-    }//GEN-LAST:event_ingresarActionPerformed
+    }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void mostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarActionPerformed
-        // aqui para que pueda mostrar la contra
-        
-        if(mostrar.isSelected()){
-            txtcontra.setEchoChar((char)0);
-        }else{
-            txtcontra.setEchoChar('*');
+        if (mostrar.isSelected()) {
+            txtContra.setEchoChar((char) 0);
+        } else {
+            txtContra.setEchoChar('*');
         }
-        
+
     }//GEN-LAST:event_mostrarActionPerformed
 
-    private void txtusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusuarioActionPerformed
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtusuarioActionPerformed
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
-    private void txtcontraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontraActionPerformed
+    private void txtContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtcontraActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmInicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmInicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmInicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmInicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmInicioSesion().setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_txtContraActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ingresar;
+    private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -267,8 +227,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JCheckBox mostrar;
-    private javax.swing.JButton regresar;
-    private javax.swing.JPasswordField txtcontra;
-    private javax.swing.JTextField txtusuario;
+    private javax.swing.JPasswordField txtContra;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

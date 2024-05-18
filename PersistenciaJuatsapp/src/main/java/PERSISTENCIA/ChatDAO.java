@@ -124,6 +124,73 @@ public class ChatDAO implements IChatDAO {
     }
 
     /**
+     * Obtiene una lista con los chats del usuario.
+     *
+     * @param usuario El usuario.
+     * @return La lista de chats que contienen al usuario o una lista vacía si
+     * no se encuentra ninguno.
+     * @throws PersistenciaException Si ocurre un error durante el proceso de
+     * obtención.
+     */
+    @Override
+    public List<Chat> obtener(Usuario usuario) throws PersistenciaException {
+        List<Chat> resultado = new ArrayList<>();
+        try {
+            MongoCollection<Chat> coleccion = conexion.obtenerColeccion();
+            for (Chat chat : coleccion.find()) {
+                if (chat.getParticipantes().contains(usuario)) {
+                    resultado.add(chat);
+                }
+            }
+            return resultado;
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al obtener los chats: " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Actualiza todos los datos del usuario en todos los chats relacionados a
+     * el;
+     *
+     * @param usuario Usuario actualizado
+     * @return True si fue actualizado correctamente en todos los chats, false
+     * si no.
+     */
+    public boolean actualizarUsuarioEnChats(Usuario usuario) {
+        try {
+            MongoCollection<Chat> coleccion = conexion.obtenerColeccion();
+            boolean actualizadoCorrectamente = true;
+
+            List<Chat> chats = coleccion.find(Filters.elemMatch("participantes", Filters.eq("id", usuario.getId()))).into(new ArrayList<>());
+
+            for (Chat chat : chats) {
+                boolean encontrado = false;
+                for (Usuario participante : chat.getParticipantes()) {
+                    if (participante.getId().equals(usuario.getId())) {
+                        participante.setNombre(usuario.getNombre());
+                        participante.setUsuario(usuario.getUsuario());
+                        participante.setTelefono(usuario.getTelefono());
+                        participante.setContra(usuario.getContra());
+                        participante.setFechaNacimiento(usuario.getFechaNacimiento());
+                        participante.setRegion(usuario.getRegion());
+                        participante.setSexo(usuario.getSexo());
+                        encontrado = true;
+                    }
+                }
+                if (encontrado) {
+                    coleccion.replaceOne(Filters.eq("_id", chat.getId()), chat);
+                } else {
+                    actualizadoCorrectamente = false;
+                }
+            }
+            return actualizadoCorrectamente;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
      * Consulta todos los chats almacenados en la base de datos.
      *
      * @return Una lista de objetos Chat.
