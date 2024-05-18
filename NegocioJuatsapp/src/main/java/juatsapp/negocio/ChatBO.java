@@ -19,17 +19,28 @@ import juatsapp.dtos.UsuarioDTO;
 import juatsapp.negocioInterfaces.IChatBO;
 
 /**
+ * La clase ChatBO es un objeto de negocio que maneja operaciones relacionadas
+ * con los chats, tales como guardar, eliminar y recuperar datos de chat y
+ * mensajes. Implementa la interfaz IChatBO.
  *
- * @author PERSONAL
+ * Esta clase utiliza varios DAOs (Objetos de Acceso a Datos) y utilidades de
+ * conversión para interactuar con la capa de datos y convertir entre objetos de
+ * transferencia de datos (DTOs) y entidades.
+ *
+ * @autor PERSONAL
  */
-public class ChatBO implements IChatBO{
-    
-    IChatDAO chatDAO;
-    IUsuarioDAO usuarioDAO;
-    UsuarioConversiones conversorUsuario;
-    ChatConversiones conversorChat;
-    MensajeConversiones conversorMensajes;
+public class ChatBO implements IChatBO {
 
+    private IChatDAO chatDAO;
+    private IUsuarioDAO usuarioDAO;
+    private UsuarioConversiones conversorUsuario;
+    private ChatConversiones conversorChat;
+    private MensajeConversiones conversorMensajes;
+
+    /**
+     * Construye una nueva instancia de ChatBO e inicializa los DAOs y las
+     * utilidades de conversión.
+     */
     public ChatBO() {
         chatDAO = new ChatDAO();
         usuarioDAO = new UsuarioDAO();
@@ -38,15 +49,29 @@ public class ChatBO implements IChatBO{
         conversorMensajes = new MensajeConversiones();
     }
 
+    /**
+     * Guarda un chat.
+     *
+     * @param chat el DTO del chat que se va a guardar
+     * @return true si el chat se guardó correctamente, false en caso contrario
+     * @throws NegocioException si ocurre un error al guardar el chat
+     */
     @Override
     public boolean guardar(ChatDTO chat) throws NegocioException {
         try {
             return chatDAO.guardar(conversorChat.DtoAEntidad(chat));
         } catch (Exception e) {
-            throw new NegocioException("No se pudo guardarse el chat: ", e);
+            throw new NegocioException("No se pudo guardar el chat: ", e);
         }
     }
 
+    /**
+     * Elimina un chat.
+     *
+     * @param chat el DTO del chat que se va a eliminar
+     * @return true si el chat se eliminó correctamente, false en caso contrario
+     * @throws NegocioException si ocurre un error al eliminar el chat
+     */
     @Override
     public boolean eliminar(ChatDTO chat) throws NegocioException {
         try {
@@ -56,6 +81,13 @@ public class ChatBO implements IChatBO{
         }
     }
 
+    /**
+     * Vacía un chat.
+     *
+     * @param chat el DTO del chat que se va a vaciar
+     * @return true si el chat se vació correctamente, false en caso contrario
+     * @throws NegocioException si ocurre un error al vaciar el chat
+     */
     @Override
     public boolean vaciar(ChatDTO chat) throws NegocioException {
         try {
@@ -65,32 +97,68 @@ public class ChatBO implements IChatBO{
         }
     }
 
+    /**
+     * Recupera un chat entre dos usuarios.
+     *
+     * @param usuarioRemitente el DTO del usuario remitente
+     * @param usuarioRemisor el DTO del usuario receptor
+     * @return el DTO del chat recuperado
+     * @throws NegocioException si ocurre un error al recuperar el chat
+     */
     @Override
     public ChatDTO obtener(UsuarioDTO usuarioRemitente, UsuarioDTO usuarioRemisor) throws NegocioException {
         try {
-            return conversorChat.entidadADto(chatDAO.obtener(conversorUsuario.DtoAEntidad(usuarioRemisor), conversorUsuario.DtoAEntidad(usuarioRemisor)));
+            return conversorChat.entidadADto(chatDAO.obtener(conversorUsuario.DtoAEntidad(usuarioRemitente), conversorUsuario.DtoAEntidad(usuarioRemisor)));
         } catch (Exception e) {
-            throw new NegocioException("No pudo guardarse el chat: ", e);
+            throw new NegocioException("No se pudo recuperar el chat: ", e);
         }
     }
 
+    /**
+     * Recupera todos los chats.
+     *
+     * @return una lista de todos los DTOs de chat
+     * @throws NegocioException si ocurre un error al recuperar los chats
+     */
     @Override
     public List<ChatDTO> consultarTodos() throws NegocioException {
         try {
             return conversorChat.listaChatsADto(chatDAO.consultarTodos());
         } catch (Exception e) {
-            throw new NegocioException("No pudo guardarse el chat: ", e);
+            throw new NegocioException("No se pudieron recuperar los chats: ", e);
         }
     }
 
+    /**
+     * Guarda un mensaje en un chat.
+     *
+     * @param chat el DTO del chat en el que se guardará el mensaje
+     * @param mensaje el DTO del mensaje que se va a guardar
+     * @return el DTO del mensaje guardado
+     * @throws NegocioException si ocurre un error al guardar el mensaje
+     */
     @Override
     public MensajeDTO guardarMensaje(ChatDTO chat, MensajeDTO mensaje) throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            return conversorMensajes.entidadADto(chatDAO.guardarMensaje(conversorChat.DtoAEntidad(chat), conversorMensajes.DtoAEntidad(mensaje)));
+        } catch (Exception e) {
+            throw new NegocioException("No se pudo enviar el mensaje: ", e);
+        }
     }
 
+    /**
+     * Recupera todos los mensajes de un chat.
+     *
+     * @param chat el DTO del chat del cual se recuperarán los mensajes
+     * @return una lista de los DTOs de los mensajes
+     * @throws NegocioException si ocurre un error al recuperar los mensajes
+     */
     @Override
     public List<MensajeDTO> consultarMensajes(ChatDTO chat) throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            return conversorMensajes.listaMensajesADto(conversorChat.DtoAEntidad(chat).getMensajes());
+        } catch (Exception e) {
+            throw new NegocioException("No se pudo recuperar la conversación: ", e);
+        }
     }
-    
 }

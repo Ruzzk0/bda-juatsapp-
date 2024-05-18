@@ -5,12 +5,12 @@ package frm;
  *
  * @author Ruzzky
  */
-public class frmInicio extends javax.swing.JFrame {
+public class FrmMenuPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form frmInicio
      */
-    public frmInicio() {
+    public FrmMenuPrincipal() {
         initComponents();
     }
 
@@ -96,13 +96,10 @@ public class frmInicio extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("CERVANTES MELLADO_244780");
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Baez Luque_247283");
 
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Medina Leyva_247527(╹ڡ╹ )");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -159,13 +156,13 @@ public class frmInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sesionActionPerformed
-        frmSesion iniciarsesion = new frmSesion();
+        FrmInicioSesion iniciarsesion = new FrmInicioSesion();
         iniciarsesion.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_sesionActionPerformed
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
-        frmRegistrar registra= new frmRegistrar();
+        FrmRegistro registra= new FrmRegistro();
         registra.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_registrarActionPerformed
@@ -191,20 +188,21 @@ public class frmInicio extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmInicio().setVisible(true);
+                new FrmMenuPrincipal().setVisible(true);
             }
         });
     }

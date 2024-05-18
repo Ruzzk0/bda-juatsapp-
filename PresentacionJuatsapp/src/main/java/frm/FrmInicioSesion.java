@@ -8,10 +8,10 @@ import javax.swing.JOptionPane;
  *
  * @author Usuario
  */
-public class frmSesion extends javax.swing.JFrame {
+public class FrmInicioSesion extends javax.swing.JFrame {
 
     
-    public frmSesion() {
+    public FrmInicioSesion() {
         initComponents();
     }
 
@@ -78,11 +78,9 @@ public class frmSesion extends javax.swing.JFrame {
         );
 
         jLabel2.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("USUARIO:");
 
         jLabel3.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("CONTRASEÑA:");
 
         txtusuario.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +95,6 @@ public class frmSesion extends javax.swing.JFrame {
             }
         });
 
-        mostrar.setForeground(new java.awt.Color(0, 0, 0));
         mostrar.setText("Mostrar Contraseña");
         mostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,7 +178,7 @@ public class frmSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
-        frmInicio inicio = new frmInicio();
+        FrmMenuPrincipal inicio = new FrmMenuPrincipal();
         inicio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_regresarActionPerformed
@@ -193,7 +190,7 @@ public class frmSesion extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this,"Bienvenido a Juatsapp");
                 this.dispose();
                    
-                frmChats frmchats = new frmChats(UsuarioLogic.obtener(txtusuario.getText()));
+                FrmNuevoChat frmchats = new FrmNuevoChat(UsuarioLogic.obtener(txtusuario.getText()));
                 frmchats.setVisible(true);
                 
             }else{
@@ -242,20 +239,21 @@ public class frmSesion extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmInicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmInicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmInicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmInicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmSesion().setVisible(true);
+                new FrmInicioSesion().setVisible(true);
             }
         });
     }

@@ -41,4 +41,5 @@ public class ControlPresentacion {
     }
     
     //Agrega cambios de pantalla
+    public void 
 }

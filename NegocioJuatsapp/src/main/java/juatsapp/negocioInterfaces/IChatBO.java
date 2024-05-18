@@ -14,23 +14,85 @@ import juatsapp.dtos.MensajeDTO;
 import juatsapp.dtos.UsuarioDTO;
 
 /**
+ * La interfaz IChatBO define los métodos que deben ser implementados por
+ * cualquier clase que se encargue de la lógica de negocio relacionada con la
+ * gestión de chats en el sistema.
  *
- * @author Paco
+ * Estos métodos permiten realizar operaciones como guardar, eliminar, vaciar,
+ * obtener y consultar chats, así como también guardar y consultar mensajes
+ * asociados a los chats.
+ *
+ * @see ChatDTO
+ * @see MensajeDTO
+ * @see UsuarioDTO
  */
 public interface IChatBO {
-    
+
+    /**
+     * Guarda un nuevo chat en el sistema.
+     *
+     * @param chat El objeto ChatDTO que se va a guardar.
+     * @return true si el chat fue guardado exitosamente.
+     * @throws NegocioException Si ocurre un error durante la operación.
+     */
     public boolean guardar(ChatDTO chat) throws NegocioException;
 
+    /**
+     * Elimina un chat del sistema.
+     *
+     * @param chat El objeto ChatDTO que se va a eliminar.
+     * @return true si el chat fue eliminado exitosamente.
+     * @throws NegocioException Si ocurre un error durante la operación.
+     */
     public boolean eliminar(ChatDTO chat) throws NegocioException;
-    
+
+    /**
+     * Vacia los mensajes de un chat, dejándolo sin ningún mensaje.
+     *
+     * @param chat El objeto ChatDTO del cual se van a eliminar los mensajes.
+     * @return true si el chat fue vaciado exitosamente.
+     * @throws NegocioException Si ocurre un error durante la operación.
+     */
     public boolean vaciar(ChatDTO chat) throws NegocioException;
 
+    /**
+     * Obtiene un chat del sistema dado el remitente y el receptor.
+     *
+     * @param usuarioRemitente El objeto UsuarioDTO que es el remitente del
+     * chat.
+     * @param usuarioRemisor El objeto UsuarioDTO que es el receptor del chat.
+     * @return El objeto ChatDTO correspondiente a la conversación entre los
+     * usuarios especificados.
+     * @throws NegocioException Si ocurre un error durante la operación.
+     */
     public ChatDTO obtener(UsuarioDTO usuarioRemitente, UsuarioDTO usuarioRemisor) throws NegocioException;
 
+    /**
+     * Consulta todos los chats almacenados en el sistema.
+     *
+     * @return Una lista de objetos ChatDTO que representan todos los chats
+     * almacenados.
+     * @throws NegocioException Si ocurre un error durante la operación.
+     */
     public List<ChatDTO> consultarTodos() throws NegocioException;
-    
+
+    /**
+     * Guarda un nuevo mensaje en el chat especificado.
+     *
+     * @param chat El objeto ChatDTO en el cual se va a guardar el mensaje.
+     * @param mensaje El objeto MensajeDTO que se va a guardar.
+     * @return El objeto MensajeDTO guardado.
+     * @throws NegocioException Si ocurre un error durante la operación.
+     */
     public MensajeDTO guardarMensaje(ChatDTO chat, MensajeDTO mensaje) throws NegocioException;
-    
-    public List<MensajeDTO> consultarMensajes (ChatDTO chat) throws NegocioException;
-    
+
+    /**
+     * Consulta todos los mensajes del chat especificado.
+     *
+     * @param chat El objeto ChatDTO del cual se van a consultar los mensajes.
+     * @return Una lista de objetos MensajeDTO que representan todos los
+     * mensajes del chat.
+     * @throws NegocioException Si ocurre un error durante la operación.
+     */
+    public List<MensajeDTO> consultarMensajes(ChatDTO chat) throws NegocioException;
 }

@@ -5,24 +5,79 @@
 package juatsapp.negocioInterfaces;
 
 import DOMINIO.Usuario;
-import EXCEPCIONES.PersistenciaException;
+import excepciones.NegocioException;
 import java.util.List;
 import juatsapp.dtos.UsuarioDTO;
 
 /**
+ * La interfaz IUsuarioBO define los métodos para la lógica de negocio
+ * relacionada con los usuarios. Esta interfaz debe ser implementada por
+ * cualquier clase que desee manejar las operaciones CRUD (Crear, Leer,
+ * Actualizar, Eliminar) y otras operaciones relacionadas con usuarios en el
+ * sistema.
  *
- * @author Paco
+ * Los métodos de esta interfaz pueden lanzar una `NegocioException` en caso de
+ * que ocurra algún problema relacionado con la lógica de negocio durante su
+ * ejecución.
+ *
+ * @see UsuarioDTO
+ * @see NegocioException
+ * @see UsuarioBO
+ * @see IUsuarioDAO
+ * @see UsuarioConversiones
  */
 public interface IUsuarioBO {
-    
-    public boolean insertar(UsuarioDTO usuario) throws PersistenciaException;
 
-    public boolean modificar(Usuario usuario) throws PersistenciaException;
+    /**
+     * Inserta un nuevo usuario en el sistema.
+     *
+     * @param usuario El objeto UsuarioDTO que contiene los datos del usuario a
+     * insertar.
+     * @return true si el usuario fue insertado exitosamente.
+     * @throws NegocioException Si ocurre un error durante el proceso de
+     * inserción.
+     */
+    public boolean insertar(UsuarioDTO usuario) throws NegocioException;
 
-    public boolean eliminarDTO(String usuario) throws PersistenciaException;
+    /**
+     * Modifica los datos de un usuario existente en el sistema.
+     *
+     * @param usuario El objeto UsuarioDTO que contiene los datos del usuario a
+     * modificar.
+     * @return true si el usuario fue modificado exitosamente.
+     * @throws NegocioException Si ocurre un error durante el proceso de
+     * modificación.
+     */
+    public boolean modificar(UsuarioDTO usuario) throws NegocioException;
 
-    public UsuarioDTO obtener(String usuario) throws PersistenciaException;
+    /**
+     * Elimina un usuario del sistema.
+     *
+     * @param usuario El identificador del usuario a eliminar.
+     * @return true si el usuario fue eliminado exitosamente.
+     * @throws NegocioException Si ocurre un error durante el proceso de
+     * eliminación.
+     */
+    public boolean eliminar(String usuario) throws NegocioException;
 
-    public List<UsuarioDTO> consultarTodos() throws PersistenciaException;
-    
+    /**
+     * Obtiene los datos de un usuario específico.
+     *
+     * @param usuario El identificador del usuario a obtener.
+     * @return El objeto UsuarioDTO que contiene los datos del usuario obtenido.
+     * @throws NegocioException Si ocurre un error durante el proceso de
+     * obtención.
+     */
+    public UsuarioDTO obtener(String usuario) throws NegocioException;
+
+    /**
+     * Consulta todos los usuarios en el sistema.
+     *
+     * @return Una lista de objetos UsuarioDTO que contiene los datos de todos
+     * los usuarios.
+     * @throws NegocioException Si ocurre un error durante el proceso de
+     * consulta.
+     */
+    public List<UsuarioDTO> consultarTodos() throws NegocioException;
+
 }

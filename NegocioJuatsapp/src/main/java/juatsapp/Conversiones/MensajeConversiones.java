@@ -11,17 +11,35 @@ import java.util.List;
 import juatsapp.dtos.MensajeDTO;
 
 /**
+ * La clase MensajeConversiones proporciona métodos para convertir entre
+ * entidades de Mensaje y DTOs de Mensaje.
  *
- * @author Paco
+ * Estos métodos permiten la conversión de objetos Mensaje a MensajeDTO y
+ * viceversa, así como también la conversión de listas de objetos Mensaje a
+ * listas de objetos MensajeDTO y viceversa.
+ *
+ * @see Mensaje
+ * @see MensajeDTO
  */
 public class MensajeConversiones {
 
-    UsuarioConversiones conversorUsuario;
+    private UsuarioConversiones conversorUsuario;
 
+    /**
+     * Constructor de la clase MensajeConversiones. Inicializa el conversor de
+     * Usuario.
+     */
     public MensajeConversiones() {
         conversorUsuario = new UsuarioConversiones();
     }
 
+    /**
+     * Convierte un objeto Mensaje a un objeto MensajeDTO.
+     *
+     * @param mensaje El objeto Mensaje que se va a convertir.
+     * @return El objeto MensajeDTO convertido.
+     * @throws NegocioException Si ocurre un error durante la conversión.
+     */
     public MensajeDTO entidadADto(Mensaje mensaje) throws NegocioException {
         MensajeDTO convertido = new MensajeDTO();
         try {
@@ -34,6 +52,13 @@ public class MensajeConversiones {
         return convertido;
     }
 
+    /**
+     * Convierte un objeto MensajeDTO a un objeto Mensaje.
+     *
+     * @param mensaje El objeto MensajeDTO que se va a convertir.
+     * @return El objeto Mensaje convertido.
+     * @throws NegocioException Si ocurre un error durante la conversión.
+     */
     public Mensaje DtoAEntidad(MensajeDTO mensaje) throws NegocioException {
         Mensaje convertido = new Mensaje();
         try {
@@ -46,6 +71,13 @@ public class MensajeConversiones {
         return convertido;
     }
 
+    /**
+     * Convierte una lista de objetos Mensaje a una lista de objetos MensajeDTO.
+     *
+     * @param mensajes La lista de objetos Mensaje que se va a convertir.
+     * @return La lista de objetos MensajeDTO convertida.
+     * @throws NegocioException Si ocurre un error durante la conversión.
+     */
     public List<MensajeDTO> listaMensajesADto(List<Mensaje> mensajes) throws NegocioException {
         List<MensajeDTO> convertidos = new ArrayList<>();
         for (Mensaje convertido : mensajes) {
@@ -54,6 +86,13 @@ public class MensajeConversiones {
         return convertidos;
     }
 
+    /**
+     * Convierte una lista de objetos MensajeDTO a una lista de objetos Mensaje.
+     *
+     * @param mensajes La lista de objetos MensajeDTO que se va a convertir.
+     * @return La lista de objetos Mensaje convertida.
+     * @throws NegocioException Si ocurre un error durante la conversión.
+     */
     public List<Mensaje> listaDtoAEntidad(List<MensajeDTO> mensajes) throws NegocioException {
         List<Mensaje> convertidos = new ArrayList<>();
         for (MensajeDTO convertido : mensajes) {

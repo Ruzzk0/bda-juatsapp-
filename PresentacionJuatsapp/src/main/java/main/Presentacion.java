@@ -1,5 +1,7 @@
 
-package frm;
+package main;
+
+import frm.FrmMenuPrincipal;
 
 /**
  *
@@ -8,10 +10,8 @@ package frm;
 public class Presentacion {
 
     public static void main(String[] args) {
-         frmInicio P = new frmInicio();
+        FrmMenuPrincipal P = new FrmMenuPrincipal();
         P.setVisible(true); 
-        
-      
     }
     
     

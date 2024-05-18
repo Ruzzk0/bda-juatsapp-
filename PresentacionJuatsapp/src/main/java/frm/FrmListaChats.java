@@ -1,4 +1,3 @@
-
 package frm;
 
 import DOMINIO.Chat;
@@ -10,40 +9,40 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Usuario
  */
-public class frmTodoChats extends javax.swing.JFrame {
-private DefaultTableModel Usuarios;
-int contador =0;
+public class FrmListaChats extends javax.swing.JFrame {
+
+    private DefaultTableModel Usuarios;
+    int contador = 0;
+
     /**
      * Creates new form frmTodoChats
      */
-    public frmTodoChats(String nuevoUsuario) {
+    public FrmListaChats(String nuevoUsuario) {
         initComponents();
         CargarInterfaz();
         CargarDatos();
 
     }
-    
-    
-    public void CargarInterfaz(){
-        String datos[][]={};
-        String Columna []={"usuarioChat"};
-        Usuarios= new DefaultTableModel(datos,Columna);
+
+    public void CargarInterfaz() {
+        String datos[][] = {};
+        String Columna[] = {"usuarioChat"};
+        Usuarios = new DefaultTableModel(datos, Columna);
         tabladatos.setModel(Usuarios);
     }
-    
-    public void CargarDatos(){
-        Chat a ;
-        for(int i=0;i<frmChats.contenedor.size();i++){
-        a=(Chat)frmChats.contenedor.get(i);
-        Usuarios.insertRow(contador, new Object[]{});
-        Usuarios.setValueAt(a.getUsuarioChat(), contador, 0);
+
+    public void CargarDatos() {
+        Chat a;
+        for (int i = 0; i < FrmNuevoChat.contenedor.size(); i++) {
+            a = (Chat) FrmNuevoChat.contenedor.get(i);
+            Usuarios.insertRow(contador, new Object[]{});
+            Usuarios.setValueAt(a.getUsuarioChat(), contador, 0);
+        }
     }
-    }
-    
 
     @SuppressWarnings("unchecked")
-    
-    
+
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -64,7 +63,6 @@ int contador =0;
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("CHATS ");
 
         tabladatos.setBackground(new java.awt.Color(204, 204, 204));
@@ -112,7 +110,6 @@ int contador =0;
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        NuevoChat.setBackground(new java.awt.Color(255, 255, 255));
         NuevoChat.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         NuevoChat.setForeground(new java.awt.Color(0, 102, 153));
         NuevoChat.setText("NUEVO CHAT");
@@ -122,7 +119,6 @@ int contador =0;
             }
         });
 
-        borrar.setBackground(new java.awt.Color(255, 255, 255));
         borrar.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         borrar.setForeground(new java.awt.Color(0, 102, 153));
         borrar.setText("BORRAR CHAT");
@@ -132,7 +128,6 @@ int contador =0;
             }
         });
 
-        conversar.setBackground(new java.awt.Color(255, 255, 255));
         conversar.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         conversar.setForeground(new java.awt.Color(0, 102, 153));
         conversar.setText("CONVERSAR");
@@ -147,9 +142,8 @@ int contador =0;
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(borrar, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(NuevoChat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,7 +181,7 @@ int contador =0;
     }// </editor-fold>//GEN-END:initComponents
 
     private void tabladatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabladatosMouseClicked
-     // Obtener la fila seleccionada
+        // Obtener la fila seleccionada
         int filaSeleccionada = tabladatos.getSelectedRow();
         // Si se seleccionó una fila válida
         if (filaSeleccionada != -1) {
@@ -198,8 +192,8 @@ int contador =0;
 
     private void NuevoChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoChatActionPerformed
         //no me quiere regresar xdd 
-        
-        frmChats chats= new frmChats();
+
+        FrmNuevoChat chats = new FrmNuevoChat();
         chats.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_NuevoChatActionPerformed
@@ -215,22 +209,21 @@ int contador =0;
     }//GEN-LAST:event_borrarActionPerformed
 
     private void conversarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conversarActionPerformed
-    // Obtener el usuario seleccionado
-    int filaSeleccionada = tabladatos.getSelectedRow();
-    if (filaSeleccionada != -1) {
-        // Crear instancia de Servidor y Cliente
-        Servidor servidor = new Servidor();
-        Cliente cliente = new Cliente();
+        // Obtener el usuario seleccionado
+        int filaSeleccionada = tabladatos.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            // Crear instancia de Servidor y Cliente
+            Servidor servidor = new Servidor();
+            Cliente cliente = new Cliente();
 
-        // Cerrar esta ventana
-        this.dispose();
+            // Cerrar esta ventana
+            this.dispose();
 
-        
-        servidor.setVisible(true);
-        cliente.setVisible(true);
-    } else {
-        JOptionPane.showMessageDialog(this, "Selecciona un usuario primero.");
-    }
+            servidor.setVisible(true);
+            cliente.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecciona un usuario primero.");
+        }
     }//GEN-LAST:event_conversarActionPerformed
 
     /**
@@ -250,20 +243,21 @@ int contador =0;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmTodoChats.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmListaChats.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmTodoChats.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmListaChats.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmTodoChats.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmListaChats.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmTodoChats.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmListaChats.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmTodoChats(null).setVisible(true);
+                new FrmListaChats(null).setVisible(true);
             }
         });
     }
@@ -280,5 +274,4 @@ int contador =0;
     public javax.swing.JTable tabladatos;
     // End of variables declaration//GEN-END:variables
 
-  
 }

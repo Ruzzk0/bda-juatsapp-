@@ -9,6 +9,7 @@ import java.net.Socket;
  * @author Ruzzky
  */
 public class Cliente extends javax.swing.JFrame {
+    
     private static boolean isRunning = false;
     private Socket socket;
     private DataInputStream entrada;

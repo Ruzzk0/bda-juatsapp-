@@ -22,12 +22,12 @@ import java.util.Locale;
  *
  * @author Ruzzky
  */
-public class frmRegistrar extends javax.swing.JFrame {
+public class FrmRegistro extends javax.swing.JFrame {
 
     /**
      * Creates new form frmRegistrar
      */
-    public frmRegistrar() {
+    public FrmRegistro() {
         initComponents();
     }
 
@@ -79,27 +79,21 @@ public class frmRegistrar extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nombre:");
 
         jLabel2.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Fecha de Nacimiento:");
 
         jLabel4.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("sexo:");
 
         jLabel5.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("telefono:");
 
         jLabel6.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Usuario:");
 
         jLabel7.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Contraseña:");
 
         nombre.addActionListener(new java.awt.event.ActionListener() {
@@ -121,13 +115,10 @@ public class frmRegistrar extends javax.swing.JFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Confirmar:");
 
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("repetir contraseña");
 
-        mostrar.setForeground(new java.awt.Color(0, 0, 0));
         mostrar.setText("Mostrar");
         mostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,7 +126,6 @@ public class frmRegistrar extends javax.swing.JFrame {
             }
         });
 
-        mostrar2.setForeground(new java.awt.Color(0, 0, 0));
         mostrar2.setText("Mostar");
         mostrar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,7 +161,7 @@ public class frmRegistrar extends javax.swing.JFrame {
 
                     // Mostrar la advertencia si el usuario tiene menos de 13 años
                     if (edadUsuario < 13) {
-                        JOptionPane.showMessageDialog(frmRegistrar.this,
+                        JOptionPane.showMessageDialog(FrmRegistro.this,
                             "Debes tener al menos 13 años para usar una app social.",
                             "Advertencia", JOptionPane.WARNING_MESSAGE);
                     }
@@ -189,7 +179,6 @@ public class frmRegistrar extends javax.swing.JFrame {
         });
 
         lblpais.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        lblpais.setForeground(new java.awt.Color(0, 0, 0));
         lblpais.setText("País:");
 
         ComboBoxPaises.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
@@ -217,13 +206,10 @@ public class frmRegistrar extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("La contraseña debe contener al menos una mayúscula, una minúscula,");
 
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText(" un dígito numérico, un carácter especial y tener un mínimo de 8 caracteres.");
 
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Debes tener más de 13 años");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -334,7 +320,7 @@ public class frmRegistrar extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -345,13 +331,12 @@ public class frmRegistrar extends javax.swing.JFrame {
                             .addComponent(mostrar2)
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(jLabel9)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
 
-        regresar.setBackground(new java.awt.Color(255, 255, 255));
         regresar.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         regresar.setForeground(new java.awt.Color(0, 102, 153));
         regresar.setText("REGRESAR");
@@ -361,7 +346,6 @@ public class frmRegistrar extends javax.swing.JFrame {
             }
         });
 
-        btnSeleccionarImagen.setBackground(new java.awt.Color(255, 255, 255));
         btnSeleccionarImagen.setForeground(new java.awt.Color(0, 51, 153));
         btnSeleccionarImagen.setText("Seleccionar Imagen");
         btnSeleccionarImagen.addActionListener(new java.awt.event.ActionListener() {
@@ -424,7 +408,7 @@ public class frmRegistrar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
-        frmInicio inicio = new frmInicio();
+        FrmMenuPrincipal inicio = new FrmMenuPrincipal();
         inicio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_regresarActionPerformed
@@ -460,7 +444,7 @@ public class frmRegistrar extends javax.swing.JFrame {
 
             if (UsuarioLogic.insertar(usuario)) {
                 JOptionPane.showMessageDialog(this, "Registro Exitoso");
-                frmSesion iniciarsesion = new frmSesion();
+                FrmInicioSesion iniciarsesion = new FrmInicioSesion();
                 iniciarsesion.setVisible(true);
                 this.dispose();
             } else {
@@ -517,7 +501,7 @@ public class frmRegistrar extends javax.swing.JFrame {
 
         int resultado;
 
-        frmbuscarimg buscar = new frmbuscarimg();
+        FrmBuscarImg buscar = new FrmBuscarImg();
 
         FileNameExtensionFilter formato = new FileNameExtensionFilter("JPG,PNG Y GIF", "jpg", "png", "gif");
 
@@ -573,20 +557,21 @@ public class frmRegistrar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmRegistrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmRegistrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmRegistrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmRegistrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmRegistrar().setVisible(true);
+                new FrmRegistro().setVisible(true);
             }
         });
     }

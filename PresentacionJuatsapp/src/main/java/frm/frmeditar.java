@@ -19,17 +19,17 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Usuario
  */
-public class frmeditar extends javax.swing.JFrame {
+public class FrmEditar extends javax.swing.JFrame {
 
     private String Usuario;
 
-     public frmeditar(String usuario) {
+     public FrmEditar(String usuario) {
         initComponents();
         this.Usuario = usuario;
         cargarDatosUsuario();
     }
 
-   public frmeditar() {
+   public FrmEditar() {
     initComponents(); 
 }
 
@@ -92,8 +92,6 @@ private void cargarDatosUsuario() {
 
         jPanel2.setBackground(new java.awt.Color(16, 99, 182));
 
-        btnSeleccionarImagen.setBackground(new java.awt.Color(255, 255, 255));
-        btnSeleccionarImagen.setForeground(new java.awt.Color(0, 0, 0));
         btnSeleccionarImagen.setText("Seleccionar Imagen");
         btnSeleccionarImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,7 +99,6 @@ private void cargarDatosUsuario() {
             }
         });
 
-        REGRESAR.setBackground(new java.awt.Color(255, 255, 255));
         REGRESAR.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         REGRESAR.setForeground(new java.awt.Color(0, 102, 153));
         REGRESAR.setText("REGRESAR");
@@ -144,27 +141,21 @@ private void cargarDatosUsuario() {
         );
 
         jLabel2.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Fecha de Nacimiento:");
 
         jLabel4.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("sexo:");
 
         jLabel5.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("telefono:");
 
         jLabel6.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Usuario:");
 
         jLabel7.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Contraseña:");
 
         jLabel8.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Contraseña:");
 
         modificar1.setBackground(new java.awt.Color(0, 102, 153));
@@ -190,7 +181,6 @@ private void cargarDatosUsuario() {
         });
 
         lblpais.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        lblpais.setForeground(new java.awt.Color(0, 0, 0));
         lblpais.setText("País:");
 
         ComboBoxPaises.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
@@ -225,13 +215,10 @@ private void cargarDatosUsuario() {
             }
         });
 
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("La contraseña debe contener al menos una mayúscula, una minúscula,");
 
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText(" un dígito numérico, un carácter especial y tener un mínimo de 8 caracteres.");
 
-        mostrar.setForeground(new java.awt.Color(0, 0, 0));
         mostrar.setText("Mostrar");
         mostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,7 +226,6 @@ private void cargarDatosUsuario() {
             }
         });
 
-        mostrar2.setForeground(new java.awt.Color(0, 0, 0));
         mostrar2.setText("Mostar");
         mostrar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -247,11 +233,9 @@ private void cargarDatosUsuario() {
             }
         });
 
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("repetir contraseña");
 
         jLabel10.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Nombre:");
 
         txtusuario.addActionListener(new java.awt.event.ActionListener() {
@@ -453,7 +437,7 @@ private void cargarDatosUsuario() {
     private void btnSeleccionarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarImagenActionPerformed
         int resultado;
 
-    frmbuscarimg buscar = new frmbuscarimg();
+    FrmBuscarImg buscar = new FrmBuscarImg();
     FileNameExtensionFilter formato = new FileNameExtensionFilter("JPG,PNG Y GIF", "jpg", "png", "gif");
     buscar.JFCImg.setFileFilter(formato);
 
@@ -523,7 +507,7 @@ private void cargarDatosUsuario() {
     // Verificar la opción seleccionada por el usuario
     if (opcion == JOptionPane.YES_OPTION) {
         // Si el usuario elige sí, regresar al inicio de sesión
-        frmInicio inicio = new frmInicio();
+        FrmMenuPrincipal inicio = new FrmMenuPrincipal();
         inicio.setVisible(true);
         this.dispose();
     }
@@ -546,20 +530,21 @@ private void cargarDatosUsuario() {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmeditar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmEditar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmeditar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmEditar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmeditar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmEditar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmeditar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmEditar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmeditar(null).setVisible(true);
+                new FrmEditar(null).setVisible(true);
             }
         });
     }
