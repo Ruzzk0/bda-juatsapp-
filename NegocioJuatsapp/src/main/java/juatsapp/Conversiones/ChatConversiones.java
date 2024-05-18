@@ -5,6 +5,7 @@
 package juatsapp.Conversiones;
 
 import DOMINIO.Chat;
+import excepciones.NegocioException;
 import java.util.ArrayList;
 import java.util.List;
 import juatsapp.dtos.ChatDTO;
@@ -24,37 +25,53 @@ public class ChatConversiones {
         conversorUsuario = new UsuarioConversiones();
     }
     
-    public ChatDTO entidadADto(Chat chat){
-        ChatDTO convertido = new ChatDTO();
-        convertido.setId(chat.getId().toHexString());
-        convertido.setParticipantes(conversorUsuario.listaUsuariosADto(chat.getParticipantes()));
-        convertido.setMensajes(conversorMensajes.listaMensajesADto(chat.getMensajes()));
-        convertido.setFechaCreacion(chat.getFechaCreacion());
-        return convertido;
-    }
-    
-    public Chat DtoAEntidad(ChatDTO chat){
-        Chat convertido = new Chat();
-        convertido.setId(new ObjectId(chat.getId()));
-        convertido.setParticipantes(conversorUsuario.listaDtoAEntidad(chat.getParticipantes()));
-        convertido.setMensajes(conversorMensajes.listaDtoAEntidad(chat.getMensajes()));
-        convertido.setFechaCreacion(chat.getFechaCreacion());
-        return convertido;
-    }
-    
-    public List<ChatDTO> listaChatsADto(List<Chat> chats){
-        List<ChatDTO> convertidos = new ArrayList<>();
-        for (Chat convertido : chats) {
-            convertidos.add(entidadADto(convertido));
+    public ChatDTO entidadADto(Chat chat) throws NegocioException {
+        try {
+            ChatDTO convertido = new ChatDTO();
+            convertido.setId(chat.getId().toHexString());
+            convertido.setParticipantes(conversorUsuario.listaUsuariosADto(chat.getParticipantes()));
+            convertido.setMensajes(conversorMensajes.listaMensajesADto(chat.getMensajes()));
+            convertido.setFechaCreacion(chat.getFechaCreacion());
+            return convertido;
+        } catch (Exception e) {
+            throw new NegocioException("Error al convertir entidad a DTO: " + e.getMessage());
         }
-        return convertidos;
     }
     
-    public List<Chat> listaDtoAEntidad(List<ChatDTO> chats){
-        List<Chat> convertidos = new ArrayList<>();
-        for (ChatDTO convertido : chats) {
-            convertidos.add(DtoAEntidad(convertido));
+    public Chat DtoAEntidad(ChatDTO chat) throws NegocioException {
+        try {
+            Chat convertido = new Chat();
+            convertido.setId(new ObjectId(chat.getId()));
+            convertido.setParticipantes(conversorUsuario.listaDtoAEntidad(chat.getParticipantes()));
+            convertido.setMensajes(conversorMensajes.listaDtoAEntidad(chat.getMensajes()));
+            convertido.setFechaCreacion(chat.getFechaCreacion());
+            return convertido;
+        } catch (Exception e) {
+            throw new NegocioException("Error al convertir DTO a entidad: " + e.getMessage());
         }
-        return convertidos;
+    }
+    
+    public List<ChatDTO> listaChatsADto(List<Chat> chats) throws NegocioException {
+        try {
+            List<ChatDTO> convertidos = new ArrayList<>();
+            for (Chat convertido : chats) {
+                convertidos.add(entidadADto(convertido));
+            }
+            return convertidos;
+        } catch (Exception e) {
+            throw new NegocioException("Error al convertir lista de entidades a DTO: " + e.getMessage());
+        }
+    }
+    
+    public List<Chat> listaDtoAEntidad(List<ChatDTO> chats) throws NegocioException {
+        try {
+            List<Chat> convertidos = new ArrayList<>();
+            for (ChatDTO convertido : chats) {
+                convertidos.add(DtoAEntidad(convertido));
+            }
+            return convertidos;
+        } catch (Exception e) {
+            throw new NegocioException("Error al convertir lista de DTO a entidades: " + e.getMessage());
+        }
     }
 }

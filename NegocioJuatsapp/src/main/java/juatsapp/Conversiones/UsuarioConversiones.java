@@ -5,6 +5,7 @@
 package juatsapp.Conversiones;
 
 import DOMINIO.Usuario;
+import excepciones.NegocioException;
 import java.util.ArrayList;
 import java.util.List;
 import juatsapp.dtos.UsuarioDTO;
@@ -14,36 +15,45 @@ import org.bson.types.ObjectId;
  *
  * @author PERSONAL
  */
+
 public class UsuarioConversiones {
     
     public UsuarioConversiones() {
     }
     
-    public UsuarioDTO entidadADto(Usuario usuario){
+    public UsuarioDTO entidadADto(Usuario usuario) throws NegocioException{
         UsuarioDTO convertido = new UsuarioDTO();
-        convertido.setId(usuario.getId().toHexString());
-        convertido.setContra(usuario.getContra());
-        convertido.setUsuario(usuario.getUsuario());
-        convertido.setNombre(usuario.getNombre());
-        convertido.setFechaNacimiento(usuario.getFechaNacimiento());
-        convertido.setTelefono(usuario.getTelefono());
-        convertido.setSexo(usuario.getSexo());
+        try {
+            convertido.setId(usuario.getId().toHexString());
+            convertido.setContra(usuario.getContra());
+            convertido.setUsuario(usuario.getUsuario());
+            convertido.setNombre(usuario.getNombre());
+            convertido.setFechaNacimiento(usuario.getFechaNacimiento());
+            convertido.setTelefono(usuario.getTelefono());
+            convertido.setSexo(usuario.getSexo());
+        } catch (Exception ex) {
+            throw new NegocioException("Error al convertir entidad a DTO: " + ex.getMessage());
+        }
         return convertido;
     }
     
-    public Usuario DtoAEntidad(UsuarioDTO usuario){
+    public Usuario DtoAEntidad(UsuarioDTO usuario) throws NegocioException{
         Usuario convertido = new Usuario();
-        convertido.setId(new ObjectId(usuario.getId()));
-        convertido.setContra(usuario.getContra());
-        convertido.setUsuario(usuario.getUsuario());
-        convertido.setNombre(usuario.getNombre());
-        convertido.setFechaNacimiento(usuario.getFechaNacimiento());
-        convertido.setTelefono(usuario.getTelefono());
-        convertido.setSexo(usuario.getSexo());
+        try {
+            convertido.setId(new ObjectId(usuario.getId()));
+            convertido.setContra(usuario.getContra());
+            convertido.setUsuario(usuario.getUsuario());
+            convertido.setNombre(usuario.getNombre());
+            convertido.setFechaNacimiento(usuario.getFechaNacimiento());
+            convertido.setTelefono(usuario.getTelefono());
+            convertido.setSexo(usuario.getSexo());
+        } catch (Exception ex) {
+            throw new NegocioException("Error al convertir DTO a entidad: " + ex.getMessage());
+        }
         return convertido;
     }
     
-    public List<UsuarioDTO> listaUsuariosADto(List<Usuario> usuarios){
+    public List<UsuarioDTO> listaUsuariosADto(List<Usuario> usuarios) throws NegocioException{
         List<UsuarioDTO> convertidos = new ArrayList<>();
         for (Usuario convertido : usuarios) {
             convertidos.add(entidadADto(convertido));
@@ -51,7 +61,7 @@ public class UsuarioConversiones {
         return convertidos;
     }
     
-    public List<Usuario> listaDtoAEntidad(List<UsuarioDTO> usuarios){
+    public List<Usuario> listaDtoAEntidad(List<UsuarioDTO> usuarios) throws NegocioException{
         List<Usuario> convertidos = new ArrayList<>();
         for (UsuarioDTO convertido : usuarios) {
             convertidos.add(DtoAEntidad(convertido));

@@ -5,6 +5,7 @@
 package juatsapp.Conversiones;
 
 import DOMINIO.Mensaje;
+import excepciones.NegocioException;
 import java.util.ArrayList;
 import java.util.List;
 import juatsapp.dtos.MensajeDTO;
@@ -16,36 +17,44 @@ import juatsapp.dtos.MensajeDTO;
 public class MensajeConversiones {
 
     UsuarioConversiones conversorUsuario;
-    
+
     public MensajeConversiones() {
         conversorUsuario = new UsuarioConversiones();
     }
-    
-    public MensajeDTO entidadADto(Mensaje mensaje){
+
+    public MensajeDTO entidadADto(Mensaje mensaje) throws NegocioException {
         MensajeDTO convertido = new MensajeDTO();
-        convertido.setFechaHoraEnviado(mensaje.getFechaHoraEnviado());
-        convertido.setTexto(mensaje.getTexto());
-        convertido.setEmisor(conversorUsuario.entidadADto(mensaje.getEmisor()));
+        try {
+            convertido.setFechaHoraEnviado(mensaje.getFechaHoraEnviado());
+            convertido.setTexto(mensaje.getTexto());
+            convertido.setEmisor(conversorUsuario.entidadADto(mensaje.getEmisor()));
+        } catch (Exception ex) {
+            throw new NegocioException("Error al convertir entidad a DTO: " + ex.getMessage());
+        }
         return convertido;
     }
-    
-    public Mensaje DtoAEntidad(MensajeDTO mensaje){
+
+    public Mensaje DtoAEntidad(MensajeDTO mensaje) throws NegocioException {
         Mensaje convertido = new Mensaje();
-        convertido.setFechaHoraEnviado(mensaje.getFechaHoraEnviado());
-        convertido.setTexto(mensaje.getTexto());
-        convertido.setEmisor(conversorUsuario.DtoAEntidad(mensaje.getEmisor()));
+        try {
+            convertido.setFechaHoraEnviado(mensaje.getFechaHoraEnviado());
+            convertido.setTexto(mensaje.getTexto());
+            convertido.setEmisor(conversorUsuario.DtoAEntidad(mensaje.getEmisor()));
+        } catch (Exception ex) {
+            throw new NegocioException("Error al convertir DTO a entidad: " + ex.getMessage());
+        }
         return convertido;
     }
-    
-    public List<MensajeDTO> listaMensajesADto(List<Mensaje> mensajes){
+
+    public List<MensajeDTO> listaMensajesADto(List<Mensaje> mensajes) throws NegocioException {
         List<MensajeDTO> convertidos = new ArrayList<>();
         for (Mensaje convertido : mensajes) {
             convertidos.add(entidadADto(convertido));
         }
         return convertidos;
     }
-    
-    public List<Mensaje> listaDtoAEntidad(List<MensajeDTO> mensajes){
+
+    public List<Mensaje> listaDtoAEntidad(List<MensajeDTO> mensajes) throws NegocioException {
         List<Mensaje> convertidos = new ArrayList<>();
         for (MensajeDTO convertido : mensajes) {
             convertidos.add(DtoAEntidad(convertido));
