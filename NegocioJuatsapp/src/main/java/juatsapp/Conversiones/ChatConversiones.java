@@ -19,8 +19,7 @@ import org.bson.types.ObjectId;
  * así como también la conversión de listas de objetos Chat a listas de objetos
  * ChatDTO y viceversa.
  *
- * @see Chat
- * @see ChatDTO
+ * @author Paco
  */
 public class ChatConversiones {
 

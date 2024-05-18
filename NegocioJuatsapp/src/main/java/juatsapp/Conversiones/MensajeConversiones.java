@@ -18,8 +18,7 @@ import juatsapp.dtos.MensajeDTO;
  * viceversa, así como también la conversión de listas de objetos Mensaje a
  * listas de objetos MensajeDTO y viceversa.
  *
- * @see Mensaje
- * @see MensajeDTO
+ * @author Paco
  */
 public class MensajeConversiones {
 

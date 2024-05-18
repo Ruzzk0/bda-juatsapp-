@@ -10,7 +10,7 @@ package excepciones;
  * clase extiende la clase Exception, permitiendo la creación de excepciones con
  * mensajes y causas específicos.
  *
- * @autor paco
+ * @author paco
  */
 public class NegocioException extends Exception {
 

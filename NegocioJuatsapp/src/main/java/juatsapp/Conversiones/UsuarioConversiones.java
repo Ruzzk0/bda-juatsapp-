@@ -19,8 +19,7 @@ import org.bson.types.ObjectId;
  * viceversa, así como también la conversión de listas de objetos Usuario a
  * listas de objetos UsuarioDTO y viceversa.
  *
- * @see Usuario
- * @see UsuarioDTO
+ * @author Paco
  */
 public class UsuarioConversiones {
 

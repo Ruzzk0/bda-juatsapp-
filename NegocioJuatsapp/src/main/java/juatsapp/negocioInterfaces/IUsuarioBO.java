@@ -20,11 +20,7 @@ import juatsapp.dtos.UsuarioDTO;
  * que ocurra algún problema relacionado con la lógica de negocio durante su
  * ejecución.
  *
- * @see UsuarioDTO
- * @see NegocioException
- * @see UsuarioBO
- * @see IUsuarioDAO
- * @see UsuarioConversiones
+ * @author Paco
  */
 public interface IUsuarioBO {
 

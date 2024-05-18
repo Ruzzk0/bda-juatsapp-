@@ -4,9 +4,6 @@
  */
 package juatsapp.negocioInterfaces;
 
-import DOMINIO.Chat;
-import DOMINIO.Mensaje;
-import DOMINIO.Usuario;
 import excepciones.NegocioException;
 import java.util.List;
 import juatsapp.dtos.ChatDTO;
@@ -22,9 +19,7 @@ import juatsapp.dtos.UsuarioDTO;
  * obtener y consultar chats, así como también guardar y consultar mensajes
  * asociados a los chats.
  *
- * @see ChatDTO
- * @see MensajeDTO
- * @see UsuarioDTO
+ * @author Paco
  */
 public interface IChatBO {
 
@@ -114,6 +109,7 @@ public interface IChatBO {
      * @param usuario Usuario actualizado
      * @return True si fue actualizado correctamente en todos los chats, false
      * si no.
+     * @throws NegocioException Si ocurre un error durante la actualización.
      */
     public boolean actualizarUsuarioEnChats(UsuarioDTO usuario) throws NegocioException;
 }

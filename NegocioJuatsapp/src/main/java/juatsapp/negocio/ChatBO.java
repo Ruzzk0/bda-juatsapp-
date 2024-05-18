@@ -5,8 +5,6 @@
 package juatsapp.negocio;
 
 import DOMINIO.Chat;
-import DOMINIO.Usuario;
-import EXCEPCIONES.PersistenciaException;
 import PERSISTENCIA.ChatDAO;
 import PERSISTENCIA.UsuarioDAO;
 import daos.interfaces.IChatDAO;
@@ -30,7 +28,7 @@ import juatsapp.negocioInterfaces.IChatBO;
  * conversión para interactuar con la capa de datos y convertir entre objetos de
  * transferencia de datos (DTOs) y entidades.
  *
- * @autor PERSONAL
+ * @author Paco
  */
 public class ChatBO implements IChatBO {
 
